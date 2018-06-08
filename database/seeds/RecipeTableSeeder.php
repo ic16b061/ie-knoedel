@@ -11,6 +11,10 @@ class RecipeTableSeeder extends Seeder
      */
     public function run()
     {
-        echo 'Seeding!';
+        \App\Recipe::truncate();
+
+        (new Faker\Generator)->seed(21);
+
+        factory(App\Recipe::class, 15)->create();
     }
 }
