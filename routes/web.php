@@ -12,9 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcomeknoedel');
 });
 
 Route::get('/demo', function () {
    return view('demo');
+});
+
+Route::get('/kontakt', function () {
+    return view('kontakt');
+});
+
+Route::get('/news', function () {
+    return view('news');
 });
