@@ -2,7 +2,7 @@
 <!--autor: Kurek -->
 <!--Kontaktformular -->
 
-@extends('layout.mainknoedel')
+@extends('layout.mainlayout')
 @section('content')
 
     <html>

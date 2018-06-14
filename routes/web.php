@@ -12,11 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcomeknoedel');
-});
-
-Route::get('/demo', function () {
-   return view('demo');
+    return view('welcome');
 });
 
 Route::get('/kontakt', function () {
@@ -25,4 +21,8 @@ Route::get('/kontakt', function () {
 
 Route::get('/news', function () {
     return view('news');
+});
+
+Route::get('/rezepte', function () {
+    return view('rezepte');
 });

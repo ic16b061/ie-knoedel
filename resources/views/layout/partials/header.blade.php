@@ -1,10 +1,10 @@
       <section class="jumbotron text-center">
         <div class="container">
-          <h1 class="jumbotron-heading">Album example</h1>
-          <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
+          <h1 class="jumbotron-heading">Knödel Rezepte</h1>
+          <p class="lead text-muted">Die besten Knödel Rezepte gibt es bei uns! Ob süss oder sauer, traditionell oder doch etwas gewagter!</p>
           <p>
-            <a href="#" class="btn btn-primary my-2">Main call to action</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+            <a href="/rezepte" class="btn btn-primary my-2">... zu den Rezepten</a>
+            <a href="/" class="btn btn-secondary my-2">... zur Startseite</a>
           </p>
         </div>
       </section>

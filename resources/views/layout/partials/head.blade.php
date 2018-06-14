@@ -4,10 +4,13 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Album example for Boots</title>
+    <title>Knödel Rezepte</title>
+
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="/css/album.css" rel="stylesheet">
+    <link href="{{ asset('css/knoedel.css') }}" rel="stylesheet">
+
