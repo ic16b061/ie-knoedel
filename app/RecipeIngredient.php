@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class RecipeIngredient extends Pivot
 {
     protected $fillable = [
-        'quantity',
+        'measurement', 'quantity',
     ];
 }
