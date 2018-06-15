@@ -4,7 +4,6 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Ingredient::class, function (Faker $faker) {
     return [
-        'name' => $faker->firstName,
-        'measurement' => $faker->colorName,
+        'name' => $faker->firstName
     ];
 });

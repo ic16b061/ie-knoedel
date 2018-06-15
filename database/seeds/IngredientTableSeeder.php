@@ -11,7 +11,7 @@ class IngredientTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Ingredient::truncate();
+        \App\Ingredient::query()->delete();
 
         (new Faker\Generator)->seed(121);
 

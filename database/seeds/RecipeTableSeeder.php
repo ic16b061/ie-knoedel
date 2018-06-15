@@ -11,7 +11,7 @@ class RecipeTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Recipe::truncate();
+        \App\Recipe::query()->delete();
 
         (new Faker\Generator)->seed(21);
 

@@ -20,7 +20,15 @@ class CreateRecipeIngredientsTable extends Migration
             $table->string('measurement');
             $table->float('quantity');
             $table->timestamps();
+
+            $table->foreign('recipe_id')
+                ->references('id')->on('recipes')
+                ->onDelete('cascade');
+            $table->foreign('ingredient_name')
+                ->references('name')->on('ingredients')
+                ->onDelete('cascade');
         });
+
     }
 
     /**

@@ -7,12 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Ingredient extends Model
 {
     protected $table = "ingredients";
-
-    function recipes() {
-        return $this->belongsToMany('App\Recipe')->using('App\RecipeIngredient');
-    }
+    protected $primaryKey = 'name';
+    public $incrementing = false;
 
     protected $fillable = [
         'name',
     ];
+
+    function recipes() {
+        return $this->belongsToMany('App\Recipe')->using('App\RecipeIngredient');
+
+        /* return $this
+            ->belongsToMany('App\Recipe', 'recipe_ingredient', 'ingredient_name', 'recipe_id')
+            ->withPivot('measurement', 'quantity'); */
+    }
 }
