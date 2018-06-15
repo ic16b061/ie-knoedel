@@ -5,7 +5,7 @@
     <link rel="icon" href="../../../../favicon.ico">
 
     <title>Knödel Rezepte</title>
-
+    <!---->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     <!-- Bootstrap core CSS -->
