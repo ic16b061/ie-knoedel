@@ -83,4 +83,9 @@ class RecipeController extends Controller
     {
         //
     }
+
+    public function topten() {
+        // Recipe::orderBy('rating', 'DESC')->get()
+        return view('/topten')->with('recipes', Recipe::orderBy('rating', 'DESC')->take(10)->get());
+    }
 }

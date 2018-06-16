@@ -2,7 +2,6 @@
 @section('content')
         <div class="album py-5 bg-light">
             <div class="container">
-
                 <div class="row">
                     <!-- RECIPES -->
                     <!-- loop over the bears and show off some things -->

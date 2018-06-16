@@ -29,4 +29,6 @@ Route::get('/rezepte', function () {
         ->with('recipes', \App\Recipe::all());
 });
 
+Route::get('/topten', 'RecipeController@topten');
+
 Route::get('/rezepte/neu', 'RecipeController@create');
