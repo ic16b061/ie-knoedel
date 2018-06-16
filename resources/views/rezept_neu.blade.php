@@ -16,7 +16,6 @@
 
         function addIngredient() {
             // Container <div> where dynamic content will be placed
-
             var container = document.getElementById("container-ingredient");
 
             var div_row = document.createElement('div');
@@ -101,7 +100,7 @@
         <div class="form-group col-auto">
             <label class="sr-only" for="image">Bild</label>
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                <input type="file" class="custom-file-input" id="validatedCustomFile">
                 <label class="custom-file-label" for="validatedCustomFile">Bild auswählen...</label>
                 <div class="invalid-feedback">Bitte wählen Sie ein Bild aus</div>
             </div>
@@ -122,13 +121,13 @@
                 <label for="ingredient">Zutaten</label>
                 <div class="form-row align-items-center">
                     <div class="col-sm-5 mb-2">
-                        <input type="text" class="form-control" id="ingredient" name="ingredient" placeholder="Zutat" required>
+                        <input type="text" class="form-control" id="ingredient" name="ingredient1" placeholder="Zutat" required>
                     </div>
                     <div class="col-sm-2 mb-2">
-                        <input type="text" class="form-control" id="measurement" name="measurement" placeholder="Maßeinheit">
+                        <input type="text" class="form-control" id="measurement" name="measurement1" placeholder="Maßeinheit">
                     </div>
                     <div class="col-sm-1 mb-2">
-                        <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Menge">
+                        <input type="text" class="form-control" id="quantity" name="quantity1" placeholder="Menge">
                     </div>
                     <div class="col-sm-1 mb-2">
                         <button type="button" class="btn btn-danger btn-sm" id="delete_ingredient">x</button>
@@ -149,7 +148,7 @@
 
 
         <div>
-            <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Rezept hinzufügen</button>
+            <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Knödel es rein!</button>
         </div>
 
 

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Ingredient;
 use App\Recipe;
+use App\RecipeIngredient;
 use Illuminate\Http\Request;
 
 class RecipeController extends Controller
@@ -35,10 +37,43 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        dd(request()->all());
+        //dd(request()->all());
+        $count = 1;
 
-        //Recipe::create($request->all());
-        //return redirect()->route('/rezepte');
+        $recipe = new Recipe;
+        $recipe->title = request('title');
+        if ($request->has('image')) {
+            $recipe->image = request('image');
+        }
+        $recipe->category = request('category');
+        $recipe->description = request('description');
+        $recipe->save();
+
+        for (; $count <= 50; $count++) {
+            if ($request->has('ingredient' . $count)) {
+                if (!Ingredient::where('name', '=' , request('ingredient' . $count))->exists()) {
+                    $ingredient = new Ingredient;
+                    $ingredient->name = request('ingredient' . $count);
+                    $ingredient->save();
+                }
+
+                $pivot = new RecipeIngredient;
+                $pivot->recipe_id = $recipe->id;
+                $pivot->ingredient_name = request('ingredient' . $count);
+
+                if ($request->has('measurement' . $count)) {
+                    $pivot->measurement = request('measurement' . $count);
+                }
+
+                if ($request->has('quantity' . $count)) {
+                    $pivot->quantity = request('quantity' . $count);
+                }
+
+                $pivot->save();
+            }
+        }
+
+        return redirect('/rezepte');
     }
 
     /**

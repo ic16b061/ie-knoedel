@@ -9,6 +9,6 @@ class RecipeIngredient extends Pivot
     protected $table = "recipe_ingredients";
 
     protected $fillable = [
-        'measurement', 'quantity',
+        'recipe_id', 'ingredient_name', 'measurement', 'quantity',
     ];
 }
