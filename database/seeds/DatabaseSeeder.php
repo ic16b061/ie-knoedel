@@ -11,8 +11,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-        $this->call(RecipeTableSeeder::class);
+        DB::table('Recipe_Ingredients')->delete();
+        DB::table('Recipes')->delete();
+        DB::table('Ingredients')->delete();
+
         $this->call(IngredientTableSeeder::class);
+        $this->call(RecipeTableSeeder::class);
     }
 }

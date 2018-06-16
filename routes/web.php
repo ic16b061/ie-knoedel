@@ -24,7 +24,9 @@ Route::get('/news', function () {
 });
 
 Route::get('/rezepte', function () {
-    return view('rezepte');
+    return view('rezepte')
+        // give us all the recipes
+        ->with('recipes', \App\Recipe::all());
 });
 
 Route::get('/rezepte/neu', 'RecipeController@create');

@@ -13,7 +13,7 @@ class Recipe extends Model
     ];
 
     function ingredients() {
-        return $this->belongsToMany('App\Ingredient')->using('App\RecipeIngredient');
+        return $this->belongsToMany('App\Ingredient', 'recipe_ingredients')->using('App\RecipeIngredient');
 
         /*return $this
             ->belongsToMany('App\Ingredient', 'recipe_ingredient', 'recipe_id', 'ingredient_name')
