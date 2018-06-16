@@ -8,7 +8,13 @@
             <div class="col-sm-4 offset-md-1 py-4">
               <h4 class="text-white">Contact</h4>
               <ul class="list-unstyled">
-                  <li><a href="/kontakt" class="text-white">Kontaktformular</a></li>
+                </li><a href="/rezepte" class="text-white">Rezepte</a></li>
+              </ul>
+              <ul class="list-unstyled">
+                </li><a href="/rezepte/neu" class="text-white">Neues Rezept</a></li>
+              </ul>
+              <ul class="list-unstyled">
+                </li><a href="/kontakt" class="text-white">Kontaktformular</a></li>
               </ul>
             </div>
           </div>
