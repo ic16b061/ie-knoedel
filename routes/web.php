@@ -32,3 +32,5 @@ Route::get('/rezepte', function () {
 Route::get('/topten', 'RecipeController@topten');
 
 Route::get('/rezepte/neu', 'RecipeController@create');
+
+Route::post('/rezepte', 'RecipeController@store');
