@@ -25,13 +25,29 @@
                                             <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                             <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                         </div>
+
+                                        <!--
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-outline-secondary">
-                                                -<img src="http://i.stack.imgur.com/e2S63.png" width="20" />
+                                                <img src="@php //echo asset("storage/dislike.png") @endphp" width="20" alt="dislike" />
                                             </button>
                                             <button type="button" class="btn btn-sm btn-outline-secondary">
-                                                +<img src="http://i.stack.imgur.com/e2S63.png" width="20" />
+                                                <img src="@php //echo asset("storage/like.png") @endphp" width="20" alt="like" />
                                             </button>
+                                        </div>
+                                        -->
+
+                                        <div class="star-rating__wrap">
+                                            <input class="star-rating__input" id="star-rating-5" type="radio" name="rating" value="5">
+                                            <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-5" title="5 out of 5 stars"></label>
+                                            <input class="star-rating__input" id="star-rating-4" type="radio" name="rating" value="4">
+                                            <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-4" title="4 out of 5 stars"></label>
+                                            <input class="star-rating__input" id="star-rating-3" type="radio" name="rating" value="3">
+                                            <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-3" title="3 out of 5 stars"></label>
+                                            <input class="star-rating__input" id="star-rating-2" type="radio" name="rating" value="2">
+                                            <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-2" title="2 out of 5 stars"></label>
+                                            <input class="star-rating__input" id="star-rating-1" type="radio" name="rating" value="1">
+                                            <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-1" title="1 out of 5 stars"></label>
                                         </div>
                                     </div>
                                 </div>
