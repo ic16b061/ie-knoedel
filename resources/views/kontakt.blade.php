@@ -4,11 +4,6 @@
 
 @extends('layout.mainlayout')
 @section('content')
-
-    <html>
-
-    <body>
-
     <div class="container">
 
         <div class="row">
@@ -76,8 +71,4 @@
     </div> <!-- /.container-->
 
     <script src="contact-2.js"></script>
-    </body>
-    </html>
-
-
 @endsection

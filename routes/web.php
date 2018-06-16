@@ -26,3 +26,5 @@ Route::get('/news', function () {
 Route::get('/rezepte', function () {
     return view('rezepte');
 });
+
+Route::get('/rezepte/neu', 'RecipeController@create');
