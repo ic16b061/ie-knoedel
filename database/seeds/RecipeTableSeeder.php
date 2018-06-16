@@ -19,9 +19,11 @@ class RecipeTableSeeder extends Seeder
         factory(App\Recipe::class, 15)->create();
         */
 
+        $badchars = array('-', '*', ' ');
+
         $recipeErdaepfelKnoedelMitPulledPork = \App\Recipe::create(array(
             'title' =>  'Erdäpfelknödel mit Pulled Pork',
-            'image' => '',
+            'image' => str_replace($badchars, '_', mb_strtolower('Erdäpfelknödel mit Pulled Pork.jpg')),
             'description'   =>
                 "Für die Erdäpfelknödel mit Pulled-Pork-Füllung zunächst für das Pulled Pork die trockenen Zutaten (außer dem Zucker) sowie den Senf für die Marinade vermischen und kräftig in das Schweinefleisch einmassieren. In einen Gefrierbeutel oder in doppelt gelegte Klarsichtfolie wickeln und im Kühlschrank für 24 Stunden marinieren.
                 Fleisch etwa eine Stunde vor der Zubereitung aus dem Kühlschrank nehmen. Backrohr auf 110 °C Ober/Unterhitze vorheizen. Fleisch auf ein Gitter legen und mit einem Bratenthermometer versehen. Orangensaft, Gemüsefond und Zucker in eine Auflaufform geben und unter dem Gitter mit dem Fleisch im Backrohr platzieren. Ab einer Kerntemperatur von ca. 65 °C (nach ca. nach 3 Stunden) das Fleisch alle 30-40 Minuten mit dem Sud in der Form unter dem Schweinerücken bepinseln. Wenn die Kerntemperatur 85-88 °C erreicht hat, das Backrohr ausschalten und das Fleisch herausnehmen. In Alufolie einwickeln, zurück in das Backrohr geben und für ca. eine Stunde rasten lassen.

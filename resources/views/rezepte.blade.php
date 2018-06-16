@@ -9,12 +9,17 @@
                     @foreach ($recipes as $recipe)
                         <div class="col-md-4">
                             <div class="card mb-4 box-shadow">
-                                <img class="card-img-top" data-src="{{ $recipe->image }}" alt="{{ $recipe->title }}">
+                                <img class="card-img-top" src="@php echo asset("storage/$recipe->image") @endphp" alt="{{ $recipe->title }}">
                                 <div class="card-header" >
-                                    {{ $recipe->title }}
+                                    <h3 class="jumbotron-heading">{{$recipe->title}}</h3>
                                 </div>
                                 <div class="card-body">
-                                    <p class="card-text">{{ $recipe->description }}</p>
+                                    <p class="card-text">
+                                        @php
+                                            echo mb_substr($recipe->description, 0, 150);
+                                        @endphp
+                                        ...
+                                    </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
@@ -22,10 +27,10 @@
                                         </div>
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-outline-secondary">
-                                                <img src="http://i.stack.imgur.com/e2S63.png" width="20" />
+                                                -<img src="http://i.stack.imgur.com/e2S63.png" width="20" />
                                             </button>
                                             <button type="button" class="btn btn-sm btn-outline-secondary">
-                                                <img src="http://i.stack.imgur.com/e2S63.png" width="20" />
+                                                +<img src="http://i.stack.imgur.com/e2S63.png" width="20" />
                                             </button>
                                         </div>
                                     </div>
