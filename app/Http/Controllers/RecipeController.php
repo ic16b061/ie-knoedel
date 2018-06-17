@@ -6,6 +6,9 @@ use App\Ingredient;
 use App\Recipe;
 use App\RecipeIngredient;
 use Illuminate\Http\Request;
+use Image;
+use Input;
+
 
 class RecipeController extends Controller
 {
@@ -38,18 +41,28 @@ class RecipeController extends Controller
     public function store(Request $request)
     {
         //dd(request()->all());
-        $count = 1;
 
         $recipe = new Recipe;
         $recipe->title = request('title');
-        if ($request->has('image')) {
-            $recipe->image = request('image');
-        }
         $recipe->category = request('category');
         $recipe->description = request('description');
+
+        if ($request->has('image')) {
+            $upload = request('image');
+            $destinationPath = public_path('img');
+            $filename = request('title');
+            $extension = Input::file('image')->getClientOriginalExtension();
+
+            $imageResize     = Image::make($upload->getRealPath())
+                ->resize(1200,1200,function($c){$c->aspectRatio(); $c->upsize();})
+                ->save($destinationPath.'/'.$filename.'.'.$extension);
+            $recipe->image = $filename.'.'.$extension;
+        }
+
         $recipe->save();
 
-        for (; $count <= 50; $count++) {
+        $ingredients = request('ingredient_count');
+        for ($count = 1; $count <= $ingredients; $count++) {
             if ($request->has('ingredient' . $count)) {
                 if (!Ingredient::where('name', '=' , request('ingredient' . $count))->exists()) {
                     $ingredient = new Ingredient;

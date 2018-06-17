@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);/*!
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@charset "UTF-8";
+
+/*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
@@ -4312,6 +4314,18 @@ input[type="button"].btn-block {
 
 .custom-file-input:lang(en) ~ .custom-file-label::after {
   content: "Browse";
+}
+
+.custom-file-input:lang(en2) ~ .custom-file-label::after {
+  content: "Change";
+}
+
+.custom-file-input:lang(de) ~ .custom-file-label::after {
+  content: "Ausw\E4hlen";
+}
+
+.custom-file-input:lang(de2) ~ .custom-file-label::after {
+  content: "\C4ndern";
 }
 
 .custom-file-label {
