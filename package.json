@@ -19,7 +19,6 @@
         "popper.js": "^1.12"
     },
     "dependencies": {
-        "bootstrap-validator": "^0.11.9",
         "holderjs": "^2.9.4",
         "requirejs": "^2.3.5"
     }

@@ -40,8 +40,8 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        dd(request()->all());
-        /*
+        //dd(request()->all());
+
         $recipe = new Recipe;
         $recipe->title = request('title');
         $recipe->category = request('category');
@@ -53,7 +53,7 @@ class RecipeController extends Controller
             $filename = request('title');
             $extension = Input::file('image')->getClientOriginalExtension();
 
-            $imageResize     = Image::make($upload->getRealPath())
+            $imageResize = Image::make($upload->getRealPath())
                 ->resize(1200,1200,function($c){$c->aspectRatio(); $c->upsize();})
                 ->save($destinationPath.'/'.$filename.'.'.$extension);
             $recipe->image = $filename.'.'.$extension;
@@ -86,7 +86,7 @@ class RecipeController extends Controller
             }
         }
 
-        return redirect('/rezepte'); */
+        return redirect('/rezepte');
     }
 
     /**
