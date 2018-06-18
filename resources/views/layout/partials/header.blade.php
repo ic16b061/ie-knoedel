@@ -5,7 +5,7 @@
         <p>
             <a href="/rezepte" class="btn btn-primary my-2">... zu den Rezepten</a>
             <a href="/" class="btn btn-secondary my-2">... zur Startseite</a>
-            <a href="/topten" class="btn btn-secondary my-2">... zu den Top 10</a>
+            <a href="/topten" class="btn btn-secondary my-2">... zu den Top 3</a>
         </p>
     </div>
 </section>

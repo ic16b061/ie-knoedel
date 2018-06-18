@@ -84,7 +84,7 @@
 
                 <div class="links">
                     <a href="/rezepte">Rezepte</a>
-                    <a href="/topten">Top 10 Rezepte</a>
+                    <a href="/topten">Top 3 Rezepte</a>
                     <a href="/kontakt">Kontaktformular</a>
                     <a href="/news">News</a>
                 </div>
