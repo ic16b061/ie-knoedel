@@ -19,13 +19,9 @@ Route::get('/kontakt', function () {
     return view('kontakt');
 });
 
-Route::get('/news', function () {
-    return view('news');
-});
-
 Route::get('/rezepte', 'RecipeController@index');
 
-Route::get('/topten', 'RecipeController@topten');
+Route::get('/rezepte/top', 'RecipeController@topten');
 
 Route::get('/rezepte/erstellen', 'RecipeController@create');
 

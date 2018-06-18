@@ -9,4 +9,4 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     <!-- Custom styles for this template
-    <link href="{{ asset('css/knoedel.css') }}" rel="stylesheet"> -->
+    <link href="{{ asset('css/knoedel.css') }}" rel="stylesheet">  -->

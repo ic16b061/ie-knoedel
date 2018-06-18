@@ -1,11 +1,6 @@
 <section class="jumbotron text-center">
     <div class="container">
-        <h1 class="jumbotron-heading">Die 3 besten Rezepte - gewählt von unseren Usern</h1>
-        <p class="lead text-muted">Hier gibt es die besten 3 aller unserer Rezepte - egal ob Süß oder Pikant, es ist für jeden was dabei!</p>
-        <p>
-            <a href="/rezepte" class="btn btn-primary my-2">Alle Rezepte</a>
-            <a href="/" class="btn btn-secondary my-2">Startseite</a>
-            <a href="/kontakt" class="btn btn-secondary my-2">Kontakt aufnehmen</a>
-        </p>
+        <h1 class="jumbotron-heading">Gewählt von unseren Usern:<br>Die drei besten Rezepte<br></h1>
+        <p class="lead text-muted">Hier gibt es die drei besten aller unserer Rezepte<br>Egal ob Süß oder Pikant, es ist für jeden was dabei!</p>
     </div>
 </section>

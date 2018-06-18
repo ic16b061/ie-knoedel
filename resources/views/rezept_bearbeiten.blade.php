@@ -211,7 +211,7 @@
     </script>
 
 
-    <section class="jumbotron text-center recipe-header">
+    <section class="jumbotron text-center">
         <div class="container">
             <h1 class="jumbotron-heading">Rezept bearbeiten</h1>
             <p class="lead text-muted">Haben Sie ein Fehler im Rezept gefunden?<br>Oder haben Sie hilfreiche Verbesserungsvorschläge?<br>Machen Sie unsere Rezepte einfach noch leckerer!</p>
