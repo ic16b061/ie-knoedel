@@ -50,7 +50,7 @@ class RecipeTableSeeder extends Seeder
         $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Mehl (griffig)", ['quantity' => "100", 'measurement' => "g"]);
         $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Weizengrieß", ['quantity' => "30", 'measurement' => "g"]);
         $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Eidotter", ['quantity' => "2", 'measurement' => "Stk"]);
-        $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Salz", ['quantity' => "1", 'measurement' => "Briese"]);
+        $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Salz", ['quantity' => "1", 'measurement' => "Prise"]);
         $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Knoblauchzehe", ['quantity' => "1", 'measurement' => "Stk"]);
         $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Apfelessig", ['quantity' => "50", 'measurement' => "ml"]);
         $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Apfelsaft", ['quantity' => "200", 'measurement' => "ml"]);
@@ -59,7 +59,7 @@ class RecipeTableSeeder extends Seeder
         $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Worcestersauce", ['quantity' => "1", 'measurement' => "TL"]);
         $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Ahornsirup", ['quantity' => "4", 'measurement' => "EL"]);
         $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Whiskey", ['quantity' => "1", 'measurement' => "Schluck"]);
-        $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Muskatnuss (gerieben)", ['quantity' => "1", 'measurement' => "Briese"]);
+        $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Muskatnuss (gerieben)", ['quantity' => "1", 'measurement' => "Prise"]);
         $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Kreuzkümmel (gemahlen)", ['quantity' => "1", 'measurement' => "TL"]);
         $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Knoblauch (getrocknet)", ['quantity' => "1", 'measurement' => "TL"]);
         $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Cayennepfeffer (gemahlen)", ['quantity' => "1", 'measurement' => "TL"]);
