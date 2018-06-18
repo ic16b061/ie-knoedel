@@ -49,6 +49,7 @@ class RecipeController extends Controller
         $recipe->title = request('title');
         $recipe->category = request('category');
         $recipe->description = request('description');
+        $recipe->ingredient_count = request('ingredient_count');
 
         if ($request->has('image')) {
             $upload = request('image');
@@ -129,7 +130,86 @@ class RecipeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd(request()->all());
+        //dd(request()->all());
+        $badchars = array('-', '*', ' ');
+
+        $recipe = Recipe::find($id);
+        $recipe->title = request('title');
+        $recipe->category = request('category');
+        $recipe->description = request('description');
+        $recipe->ingredient_count = request('ingredient_count');
+
+        if ($request->has('image')) {
+            $upload = request('image');
+            $destinationPath = public_path('img');
+            $filename = request('title');
+            $extension = Input::file('image')->getClientOriginalExtension();
+            $file = str_replace($badchars, '_', mb_strtolower($filename.'.'.$extension));
+
+            $imageResize = Image::make($upload->getRealPath())
+                ->resize(1200,1200,function($c){$c->aspectRatio(); $c->upsize();})
+                ->save($destinationPath.'/'.$file);
+
+            $recipe->image = $file;
+        }
+
+        $recipe->save();
+
+        // Add new ingredients to ingredients table and recipe<->ingredient combination to recipe_ingredients table
+        $ingredient_index = request('ingredient_index'); // index of last possible ingredient number
+
+        // get ids of current data in recipe_ingredients
+        $current_data = RecipeIngredient::select('id')->where('recipe_id', '=', $id)->get();
+        $old_ids = array();
+        foreach ($current_data as $key=>$current_result) {
+            $old_ids[$key] = $current_result->id;
+        }
+
+        // array for data which should be kept in recipe_ingredients
+        $new_ids = array();
+
+        for ($count = 1; $count <= $ingredient_index; $count++) {
+            $match = ['recipe_id' => $id, 'ingredient_name' => request('ingredient' . $count)];
+
+            if ($request->has('ingredient' . $count)) {
+                if (!Ingredient::where('name', '=' , request('ingredient' . $count))->exists()) {
+                    $ingredient = new Ingredient;
+                    $ingredient->name = request('ingredient' . $count);
+                    $ingredient->save();
+                }
+
+                if (!RecipeIngredient::where($match)->exists()) {
+                    $pivot = new RecipeIngredient;
+                    $pivot->recipe_id = $recipe->id;
+                    $pivot->ingredient_name = request('ingredient' . $count);
+
+                    if ($request->has('measurement' . $count)) {
+                        $pivot->measurement = request('measurement' . $count);
+                    }
+
+                    if ($request->has('quantity' . $count)) {
+                        $pivot->quantity = request('quantity' . $count);
+                    }
+
+                    $pivot->save();
+                }
+            }
+
+            // save id of recipe<->ingredient combination in array
+            $results = RecipeIngredient::select('id')->where($match)->get();
+            foreach ($results as $key=>$result) {
+                $new_ids[$count - 1] = $result->id;
+            }
+        }
+
+        // find and delete recipe<->ingredient combinations which were deleted on edit form
+        foreach ($old_ids as $old_id) {
+            if (!in_array($old_id, $new_ids)) {
+                RecipeIngredient::find($old_id)->delete();
+            }
+        }
+
+        return redirect('/rezepte/'.$id);
     }
 
     /**
