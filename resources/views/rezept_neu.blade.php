@@ -7,97 +7,103 @@
 @extends('layout.formlayout')
 @section('content')
     <script type='text/javascript'>
-        var count = 2;
+        let count = 1;
 
         function setup(){
             document.getElementById("add_ingredient").addEventListener("click", addIngredient);
-            document.getElementById("delete_ingredient").addEventListener("click", deleteIngredient);
+            document.getElementById("delete_ingredient1").addEventListener("click", deleteIngredient);
         }
 
         function addIngredient() {
-            // Container <div> where dynamic content will be placed
-            var container = document.getElementById("container-ingredient");
-
-            var div_row = document.createElement('div');
-            div_row.className = 'form-row align-items-center';
-
-            var div_ingredient = document.createElement('div');
-            div_ingredient.className = 'col-sm-6 mb-2';
-            var input_ingredient = document.createElement('input');
-            input_ingredient.className = 'form-control';
-            input_ingredient.required = true;
-            input_ingredient.type = "text";
-            input_ingredient.id = 'ingredient' + count;
-            input_ingredient.name = 'ingredient' + count;
-            input_ingredient.placeholder = 'Zutat';
-            div_ingredient.appendChild(input_ingredient);
-
-            var div_measurement = document.createElement('div');
-            div_measurement.className = 'col mb-2';
-            var input_measurement = document.createElement('input');
-            input_measurement.className = 'form-control';
-            input_measurement.type = 'text';
-            input_measurement.id = "measurement" + count;
-            input_measurement.name = "measurement" + count;
-            input_measurement.placeholder = 'Maßeinheit';
-
-            var div_quantity = document.createElement('div');
-            div_quantity.className = 'col mb-2';
-            var input_quantity = document.createElement('input');
-            input_quantity.className = 'form-control';
-            input_quantity.type = 'text';
-            input_quantity.id = "quantity" + count;
-            input_quantity.name = "quantity" + count;
-            input_quantity.placeholder = 'Menge';
-
-            var div_delete = document.createElement('div');
-            div_delete.className = 'mb-2';
-            var button_delete = document.createElement('button');
-            button_delete.className = 'btn btn-danger btn-sm';
-            button_delete.type = 'button';
-            button_delete.id = "delete_ingredient" + count;
-            button_delete.innerText = 'x';
-            button_delete.addEventListener("click", deleteIngredient);
-
-            container.appendChild(div_row);
-            div_row.appendChild(div_ingredient);
-            div_row.appendChild(div_measurement);
-            div_row.appendChild(div_quantity);
-            div_row.appendChild(div_delete);
-            div_measurement.appendChild(input_measurement);
-            div_quantity.appendChild(input_quantity);
-            div_delete.appendChild(button_delete);
-
             count++;
+
+            const container = document.getElementById("container-ingredient");
+            const $div = document.createElement('div');
+
+            $div.className = 'form-row align-items-center';
+
+            $div.appendChild(createIngredientElement('ingredient', 'Zutat'));
+            $div.appendChild(createIngredientElement('measurement', 'Maßeinheit'));
+            $div.appendChild(createIngredientElement('quantity', 'Menge'));
+            $div.appendChild(createDeleteButton());
+
+            container.appendChild($div);
+
             document.getElementById('ingredient_count').value = count;
+        }
+
+        function createIngredientElement(type, ph) {
+            const div = document.createElement('div');
+            const input = document.createElement('input');
+
+            switch (type) {
+                case 'ingredient':
+                    div.className = 'col-sm-6 mb-2';
+                    input.required = true;
+                    break;
+                case 'measurement':
+                case 'quantity':
+                    div.className = 'col mb-2';
+                    break;
+                default:
+                    break;
+            }
+
+            // Common attributes
+            input.type = "text";
+            input.className = 'form-control';
+            input.id = type + count;
+            input.name = type + count;
+            input.placeholder = ph;
+
+            div.appendChild(input);
+
+            return div;
+        }
+
+        function createDeleteButton() {
+            const div = document.createElement('div');
+            const button = document.createElement('button');
+
+            div.className = 'mb-2';
+
+            button.className = 'btn btn-danger btn-sm';
+            button.type = 'button';
+            button.id = "delete_ingredient" + count;
+            button.innerText = 'x';
+            button.addEventListener("click", deleteIngredient);
+
+            div.appendChild(button);
+
+            return div;
         }
 
         function deleteIngredient(e) {
             e.target.parentElement.parentElement.remove();
         }
 
-        function readURL(input) {
+        function createPreview(input) {
             if (input.files && input.files[0]) {
-                var reader = new FileReader();
+                const reader = new FileReader();
 
                 reader.onload = function (e) {
                     $('#img_preview')
                         .attr('src', e.target.result);
-                    let upload = document.getElementById('file-label');
+                    const upload = document.getElementById('file-label');
 
-                    let image = document.getElementById('image').value;
-                    let filename = basename(image, '\\');
+                    const image = document.getElementById('image').value;
+                    const filename = basename(image, '\\');
                     upload.innerText = filename;
 
-                    let button = document.getElementById('image');
+                    const button = document.getElementById('image');
                     button.setAttribute('lang','de2');
                 };
 
                 reader.readAsDataURL(input.files[0]);
-                var div = document.getElementById("image_preview");
+                const div = document.getElementById("image_preview");
                 div.classList.remove('heightless');
                 div.classList.remove('invisible');
-                var div2 = document.getElementById("container-ingredient");
+                const div2 = document.getElementById("container-ingredient");
                 div2.prepend(document.createElement("br"));
             }
         }
@@ -141,7 +147,7 @@
             <div class="col-sm">
                 <label class="" for="image">Bild-Upload</label>
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="image" name="image" lang="de" accept="image/*" onchange="readURL(this);" required>
+                    <input type="file" class="custom-file-input" id="image" name="image" lang="de" accept="image/*" onchange="createPreview(this);" required>
                     <label class="custom-file-label" for="image" id="file-label">Bild hochladen...</label>
                     <div class="invalid-feedback">Bitte wählen Sie ein Bild aus</div>
                 </div>
@@ -176,7 +182,7 @@
                         <input type="text" class="form-control" id="quantity" name="quantity1" placeholder="Menge">
                     </div>
                     <div class="mb-2">
-                        <button type="button" class="btn btn-danger btn-sm" id="delete_ingredient">x</button>
+                        <button type="button" class="btn btn-danger btn-sm" id="delete_ingredient1">x</button>
                     </div>
                 </div>
             </div>

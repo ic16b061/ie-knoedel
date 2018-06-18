@@ -40,8 +40,8 @@ class RecipeController extends Controller
      */
     public function store(Request $request)
     {
-        //dd(request()->all());
-
+        dd(request()->all());
+        /*
         $recipe = new Recipe;
         $recipe->title = request('title');
         $recipe->category = request('category');
@@ -62,7 +62,7 @@ class RecipeController extends Controller
         $recipe->save();
 
         $ingredients = request('ingredient_count');
-        for ($count = 1; $count <= $ingredients; $count++) {
+        for ($count = 1; $count < $ingredients; $count++) {
             if ($request->has('ingredient' . $count)) {
                 if (!Ingredient::where('name', '=' , request('ingredient' . $count))->exists()) {
                     $ingredient = new Ingredient;
@@ -86,7 +86,7 @@ class RecipeController extends Controller
             }
         }
 
-        return redirect('/rezepte');
+        return redirect('/rezepte'); */
     }
 
     /**
