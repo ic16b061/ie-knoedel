@@ -211,9 +211,9 @@
                 <div class="form-group col-sm-3">
                     <label for="category">Kategorie</label>
                     <select class="form-control" id="category" name="category" value="{{ $recipe->category }}">
-                        <option>Allgemein</option>
-                        <option>Sauer</option>
-                        <option>Süß</option>
+                        <option {{ $recipe->category == 'Allgemein' ? 'selected=selected' : '' }}>Allgemein</option>
+                        <option {{ $recipe->category == 'Sauer' ? 'selected=selected' : '' }}>Sauer</option>
+                        <option {{ $recipe->category == 'Süß' ? 'selected=selected' : '' }}>Süß</option>
                     </select>
                     <div class="valid-feedback">Schaut gut aus!</div>
                 </div>

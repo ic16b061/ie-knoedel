@@ -25,14 +25,14 @@ Route::get('/news', function () {
 
 Route::get('/rezepte', 'RecipeController@index');
 
-Route::post('/rezepte', 'RecipeController@store');
-
 Route::get('/topten', 'RecipeController@topten');
 
-Route::get('/rezepte/{id}', 'RecipeController@show');
+Route::get('/rezepte/erstellen', 'RecipeController@create');
+
+Route::post('/rezepte', 'RecipeController@store');
 
 Route::post('/rezepte/{id}', 'RecipeController@update');
 
-Route::get('/rezepte/erstellen', 'RecipeController@create');
+Route::get('/rezepte/{id}', 'RecipeController@show');
 
 Route::get('/rezepte/{id}/bearbeiten', 'RecipeController@edit');

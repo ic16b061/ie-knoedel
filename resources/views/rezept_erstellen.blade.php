@@ -87,7 +87,7 @@
             container.appendChild($div);
 
             toHtmlNumericInput('quantity' + count);
-            document.getElementById('ingredient_count').value = count;
+            document.getElementById('ingredient_index').value = count;
         }
 
         function createIngredientElement(type, ph) {
@@ -197,7 +197,8 @@
 
             {{ csrf_field() }}
 
-            <input type="hidden" name="ingredient_count" id="ingredient_count" value="2" \>
+            <input type="hidden" name="ingredient_count" id="ingredient_index" value="1" \>
+            <input type="hidden" name="ingredient_count" id="ingredient_count" value="1" \>
 
             <div class="form-group col-auto">
                 <label for="title">Rezept-Titel</label>
