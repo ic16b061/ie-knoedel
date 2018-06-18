@@ -29,8 +29,7 @@
         }
 
         // call this function with the id of the input textbox you want to be html-numeric-input
-        // by default, decimal separator is '.', you can force to use comma with the second parameter = true
-        function toHtmlNumericInput(inputElementId, useCommaAsDecimalSeparator) {
+        function toHtmlNumericInput(inputElementId) {
             let textbox = document.getElementById(inputElementId);
             // called when key is pressed
             // in keydown, we get the keyCode
@@ -38,69 +37,35 @@
             textbox.addEventListener("keydown", function _OnNumericInputKeyDown(e) {
                 const key = e.which || e.keyCode; // http://keycode.info/
                 if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
-                    // alphabet
-                    key >= 65 && key <= 90 ||
-                    // spacebar
-                    key == 32) {
+                    // disallowed keys
+                    (key >= 59 && key <= 96 || key == 32 || key >= 106 && key <= 109 || key == 111 || key == 160 ||
+                        key == 163 || key == 171 || key == 173 || key == 189 || key == 192 || key == 222)) {
+                    e.preventDefault();
+                    return false;
+                }
+                if ((e.shiftKey || e.altKey) &&
+                    // disallowed keys with shift and alt gr
+                    (key >= 48 && key <= 96 ||
+                        key >= 106 && key <= 109 || key == 111 || key == 160 || key == 163 || key == 163 ||
+                        key == 171 || key == 173 || key == 188 || key == 190 || key == 192 || key == 222)) {
                     e.preventDefault();
                     return false;
                 }
                 if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
-                    // numbers
-                    key >= 48 && key <= 57 ||
-                    // Numeric keypad
-                    key >= 96 && key <= 105 ||
-                    // allow: Ctrl+A
-                    (e.keyCode == 65 && e.ctrlKey === true) ||
-                    // allow: Ctrl+C
-                    (key == 67 && e.ctrlKey === true) ||
-                    // Allow: Ctrl+X
-                    (key == 88 && e.ctrlKey === true) ||
-                    // allow: home, end, left, right
-                    (key >= 35 && key <= 39) ||
-                    // Backspace and Tab and Enter
-                    key == 8 || key == 9 || key == 13 ||
-                    // Del and Ins
-                    key == 46 || key == 45) {
+                    key >= 48 && key <= 57 || // numbers
+                    key >= 97 && key <= 105 || // Numeric keypad
+                    // allow: Ctrl+A, Ctrl+C & Ctrl+X
+                    (e.keyCode == 65 && e.ctrlKey === true) || (key == 67 && e.ctrlKey === true) || (key == 88 && e.ctrlKey === true) ||
+                    // allow: (home, end, left, right) & Backspace and Tab and Enter and Del and Ins
+                    (key >= 35 && key <= 39) || key == 8 || key == 9 || key == 13 || key == 46 || key == 45) {
                     return true;
-                }
-                let v = this.value; // v can be null, in case textbox is number and does not valid
-                // if minus, dash
-                if (key == 109 || key == 189) {
-                    // if already has -, ignore the new one
-                    if (v[0] === '-') {
-                        // console.log('return, already has - in the beginning');
-                        return false;
-                    }
-                }
-                if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
-                    // comma, period and numpad.dot
-                    key == 190 || key == 188 || key == 110) {
-                    // console.log('already having comma, period, dot', key);
-                    if (/[\.,]/.test(v)) {
-                        // console.log('return, already has , . somewhere');
-                        return false;
-                    }
                 }
             });
             textbox.addEventListener("keyup", function _OnNumericInputKeyUp(e) {
                 let v = this.value;
                 if (v) {
-                    // refine the value
-
-                    // this replace also remove the -, we add it again if needed
-                    v = (v[0] === '-' ? '-' : '') +
-                        (useCommaAsDecimalSeparator ?
-                            v.replace(/[^0-9\,]/g, '') :
-                            v.replace(/[^0-9\.]/g, ''));
-
-                    // remove all decimalSeparator that have other decimalSeparator following. After this processing, only the last decimalSeparator is kept.
-                    if (useCommaAsDecimalSeparator) {
-                        v = v.replace(/,(?=(.*),)+/g, '');
-                    } else {
-                        v = v.replace(/\.(?=(.*)\.)+/g, '');
-                    }
-                    //console.log(this.value, v);
+                    v = v.replace(/,/g, '.'); // , to .
+                    v = v.replace(/\.(?=(.*)\.)+/g, ''); // only allow one .
                     this.value = v; // update value only if we changed it
                 }
             });
@@ -226,97 +191,104 @@
         </div>
     </section>
 
-    <form class="needs-validation justify-content-center align-items-center container" data-toggle="validator" method="post" action="/rezepte" enctype="multipart/form-data" novalidate>
+    <div class="justify-content-center align-items-center container py-5 bg-light">
+        <form class="needs-validation" data-toggle="validator" method="post" action="/rezepte"
+              enctype="multipart/form-data" novalidate>
 
-        {{ csrf_field() }}
+            {{ csrf_field() }}
 
-        <input type="hidden" name="ingredient_count" id="ingredient_count" value="2" \>
+            <input type="hidden" name="ingredient_count" id="ingredient_count" value="2" \>
 
-        <div class="form-group col-auto">
-            <label for="title">Rezept-Titel</label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="Titel" required>
-            <div class="valid-feedback">Schaut gut aus!</div>
-            <div class="invalid-feedback">Bitte geben Sie einen Titel ein</div>
-        </div>
-
-
-        <div class="form-group form-row col-auto">
-            <div class="form-group col-sm-3">
-                <label for="category">Kategorie</label>
-                <select class="form-control" id="category" name="category">
-                    <option>Allgemein</option>
-                    <option>Sauer</option>
-                    <option>Süß</option>
-                </select>
+            <div class="form-group col-auto">
+                <label for="title">Rezept-Titel</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Titel" required>
                 <div class="valid-feedback">Schaut gut aus!</div>
+                <div class="invalid-feedback">Bitte geben Sie einen Titel ein</div>
             </div>
-            <div class="col-sm">
-                <label class="" for="image">Bild-Upload</label>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="image" name="image" lang="de" accept="image/*" onchange="createPreview(this);" required>
-                    <label class="custom-file-label" for="image" id="file-label">Bild hochladen...</label>
+
+
+            <div class="form-group form-row col-auto">
+                <div class="form-group col-sm-3">
+                    <label for="category">Kategorie</label>
+                    <select class="form-control" id="category" name="category">
+                        <option>Allgemein</option>
+                        <option>Sauer</option>
+                        <option>Süß</option>
+                    </select>
                     <div class="valid-feedback">Schaut gut aus!</div>
-                    <div class="invalid-feedback">Bitte wählen Sie ein Bild aus</div>
+                </div>
+                <div class="col-sm">
+                    <label class="" for="image">Bild-Upload</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="image" name="image" lang="de" accept="image/*"
+                               onchange="createPreview(this);" required>
+                        <label class="custom-file-label" for="image" id="file-label">Bild hochladen...</label>
+                        <div class="valid-feedback">Schaut gut aus!</div>
+                        <div class="invalid-feedback">Bitte wählen Sie ein Bild aus</div>
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-        <div class="invisible heightless d-flex justify-content-center align-items-center container" id="image_preview">
-            <div>
+            <div class="invisible heightless d-flex justify-content-center align-items-center container"
+                 id="image_preview">
                 <div>
-                    <label for="img_preview">Vorschau</label>
+                    <div>
+                        <label for="img_preview">Vorschau</label>
+                    </div>
+                    <div>
+                        <img class="img-fluid " id="img_preview" src="" alt="Rezeptbild"/>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="form-group col-auto">
+                <div id="container-ingredient">
+                    <label for="ingredient">Zutaten</label>
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-6 mb-2">
+                            <input type="text" class="form-control" id="ingredient1" name="ingredient1"
+                                   placeholder="Zutat" required>
+                            <div class="valid-feedback">Schaut gut aus!</div>
+                            <div class="invalid-feedback">Bitte geben Sie eine Zutat ein</div>
+                        </div>
+                        <div class="col mb-2">
+                            <input type="text" class="form-control" id="measurement1" name="measurement1"
+                                   placeholder="Maßeinheit">
+                            <div class="valid-feedback">Schaut gut aus!</div>
+                        </div>
+                        <div class="col mb-2">
+                            <input type="text" class="form-control" id="quantity1" name="quantity1" placeholder="Menge">
+                            <div class="valid-feedback">Schaut gut aus!</div>
+                        </div>
+                        <div class="mb-2">
+                            <button type="button" class="btn btn-danger btn-sm" id="delete_ingredient1">x</button>
+                        </div>
+                    </div>
                 </div>
                 <div>
-                    <img class="img-fluid " id="img_preview" src="" alt="Rezeptbild"/>
+                    <button type="button" class="btn btn-success btn-sm" id="add_ingredient">+</button>
                 </div>
             </div>
-        </div>
 
-        <br>
 
-        <div class="form-group col-auto">
-            <div id="container-ingredient">
-                <label for="ingredient">Zutaten</label>
-                <div class="form-row align-items-center">
-                    <div class="col-sm-6 mb-2">
-                        <input type="text" class="form-control" id="ingredient1" name="ingredient1" placeholder="Zutat" required>
-                        <div class="valid-feedback">Schaut gut aus!</div>
-                        <div class="invalid-feedback">Bitte geben Sie eine Zutat ein</div>
-                    </div>
-                    <div class="col mb-2">
-                        <input type="text" class="form-control" id="measurement1" name="measurement1" placeholder="Maßeinheit">
-                        <div class="valid-feedback">Schaut gut aus!</div>
-                    </div>
-                    <div class="col mb-2">
-                        <input type="text" class="form-control" id="quantity1" name="quantity1" placeholder="Menge">
-                        <div class="valid-feedback">Schaut gut aus!</div>
-                    </div>
-                    <div class="mb-2">
-                        <button type="button" class="btn btn-danger btn-sm" id="delete_ingredient1">x</button>
-                    </div>
-                </div>
+            <div class="form-group col-auto">
+                <label for="description">Beschreibung</label>
+                <textarea class="form-control" id="description" name="description" placeholder="Beschreibung" rows="10"
+                          required></textarea>
+                <div class="valid-feedback">Schaut gut aus!</div>
+                <div class="invalid-feedback">Bitte geben Sie eine Beschreibung ein</div>
             </div>
+
+            <br>
+
             <div>
-                <button type="button" class="btn btn-success btn-sm" id="add_ingredient">+</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Knödel es rein!</button>
             </div>
-        </div>
 
 
-
-        <div class="form-group col-auto">
-            <label for="description">Beschreibung</label>
-            <textarea class="form-control" id="description" name="description" placeholder="Beschreibung" rows="10" required></textarea>
-            <div class="valid-feedback">Schaut gut aus!</div>
-            <div class="invalid-feedback">Bitte geben Sie eine Beschreibung ein</div>
-        </div>
-
-        <br>
-
-        <div>
-            <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Knödel es rein!</button>
-        </div>
-
-
-    </form>
+        </form>
+    </div>
 @endsection

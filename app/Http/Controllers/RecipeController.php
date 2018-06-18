@@ -19,7 +19,9 @@ class RecipeController extends Controller
      */
     public function index()
     {
-        //
+        return view('rezepte')
+            // give us all the recipes
+            ->with('recipes', Recipe::all());
     }
 
     /**
@@ -29,7 +31,7 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        return view('rezept_neu');
+        return view('rezept_erstellen');
     }
 
     /**
@@ -62,7 +64,7 @@ class RecipeController extends Controller
         $recipe->save();
 
         $ingredients = request('ingredient_count');
-        for ($count = 1; $count < $ingredients; $count++) {
+        for ($count = 1; $count <= $ingredients; $count++) {
             if ($request->has('ingredient' . $count)) {
                 if (!Ingredient::where('name', '=' , request('ingredient' . $count))->exists()) {
                     $ingredient = new Ingredient;
@@ -97,7 +99,9 @@ class RecipeController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('rezept')
+            ->with('recipe', Recipe::find($id))
+            ->with('ingredients', RecipeIngredient::where('recipe_id', $id)->get());
     }
 
     /**
@@ -108,7 +112,9 @@ class RecipeController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('rezept_bearbeiten')
+            ->with('recipe', Recipe::find($id))
+            ->with('ingredients', RecipeIngredient::where('recipe_id', $id)->get());
     }
 
     /**
@@ -120,7 +126,7 @@ class RecipeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd(request()->all());
     }
 
     /**
@@ -134,6 +140,11 @@ class RecipeController extends Controller
         //
     }
 
+    /**
+     * Display a listing of the resource with top10 rating.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function topten() {
         // Recipe::orderBy('rating', 'DESC')->get()
         return view('/topten')->with('recipes', Recipe::orderBy('rating', 'DESC')->take(10)->get());

@@ -23,14 +23,16 @@ Route::get('/news', function () {
     return view('news');
 });
 
-Route::get('/rezepte', function () {
-    return view('rezepte')
-        // give us all the recipes
-        ->with('recipes', \App\Recipe::all());
-});
+Route::get('/rezepte', 'RecipeController@index');
+
+Route::post('/rezepte', 'RecipeController@store');
 
 Route::get('/topten', 'RecipeController@topten');
 
-Route::get('/rezepte/neu', 'RecipeController@create');
+Route::get('/rezepte/{id}', 'RecipeController@show');
 
-Route::post('/rezepte', 'RecipeController@store');
+Route::post('/rezepte/{id}', 'RecipeController@update');
+
+Route::get('/rezepte/erstellen', 'RecipeController@create');
+
+Route::get('/rezepte/{id}/bearbeiten', 'RecipeController@edit');

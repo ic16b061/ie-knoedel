@@ -5,14 +5,8 @@
     <link rel="icon" href="../../../../favicon.ico">
 
     <title>Knödel Rezepte</title>
-    <!---->
+    <!-- Laravel Mix style sheet -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-    <!-- Bootstrap core CSS -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('css/knoedel.css') }}" rel="stylesheet">
-
-    <!-- Fontawesome css for star-rating -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- Custom styles for this template
+    <link href="{{ asset('css/knoedel.css') }}" rel="stylesheet"> -->

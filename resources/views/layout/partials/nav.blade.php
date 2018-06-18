@@ -11,7 +11,7 @@
                 </li><a href="/rezepte" class="text-white">Rezepte</a></li>
               </ul>
               <ul class="list-unstyled">
-                </li><a href="/rezepte/neu" class="text-white">Neues Rezept</a></li>
+                </li><a href="/rezepte/erstellen" class="text-white">Neues Rezept</a></li>
               </ul>
               <ul class="list-unstyled">
                 </li><a href="/kontakt" class="text-white">Kontaktformular</a></li>

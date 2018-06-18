@@ -15,10 +15,7 @@ class Ingredient extends Model
     ];
 
     function recipes() {
-        return $this->belongsToMany('App\Recipe', 'recipe_ingredients')->using('App\RecipeIngredient');
-
-        /* return $this
-            ->belongsToMany('App\Recipe', 'recipe_ingredient', 'ingredient_name', 'recipe_id')
-            ->withPivot('measurement', 'quantity'); */
+        return $this->belongsToMany('App\Recipe', 'recipe_ingredients')
+            ->using('App\RecipeIngredient');
     }
 }
