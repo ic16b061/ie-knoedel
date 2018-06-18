@@ -38,14 +38,14 @@
                 const key = e.which || e.keyCode; // http://keycode.info/
                 if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
                     // disallowed keys
-                    (key >= 59 && key <= 96 || key == 32 || key >= 106 && key <= 109 || key == 111 || key == 160 ||
+                    (key >= 59 && key <= 95 || key == 32 || key >= 106 && key <= 109 || key == 111 || key == 160 ||
                         key == 163 || key == 171 || key == 173 || key == 189 || key == 192 || key == 222)) {
                     e.preventDefault();
                     return false;
                 }
                 if ((e.shiftKey || e.altKey) &&
                     // disallowed keys with shift and alt gr
-                    (key >= 48 && key <= 96 ||
+                    (key >= 48 && key <= 95 ||
                         key >= 106 && key <= 109 || key == 111 || key == 160 || key == 163 || key == 163 ||
                         key == 171 || key == 173 || key == 188 || key == 190 || key == 192 || key == 222)) {
                     e.preventDefault();
@@ -53,7 +53,7 @@
                 }
                 if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
                     key >= 48 && key <= 57 || // numbers
-                    key >= 96 && key <= 105 || // Numeric keypad
+                    key >= 95 && key <= 105 || // Numeric keypad
                     // allow: Ctrl+A, Ctrl+C & Ctrl+X
                     (e.keyCode == 65 && e.ctrlKey === true) || (key == 67 && e.ctrlKey === true) || (key == 88 && e.ctrlKey === true) ||
                     // allow: (home, end, left, right) & Backspace and Tab and Enter and Del and Ins

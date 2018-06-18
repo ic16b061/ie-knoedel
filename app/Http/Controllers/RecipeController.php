@@ -43,6 +43,7 @@ class RecipeController extends Controller
     public function store(Request $request)
     {
         //dd(request()->all());
+        $badchars = array('-', '*', ' ');
 
         $recipe = new Recipe;
         $recipe->title = request('title');
@@ -54,17 +55,19 @@ class RecipeController extends Controller
             $destinationPath = public_path('img');
             $filename = request('title');
             $extension = Input::file('image')->getClientOriginalExtension();
+            $file = str_replace($badchars, '_', mb_strtolower($filename.'.'.$extension));
 
             $imageResize = Image::make($upload->getRealPath())
                 ->resize(1200,1200,function($c){$c->aspectRatio(); $c->upsize();})
-                ->save($destinationPath.'/'.$filename.'.'.$extension);
-            $recipe->image = $filename.'.'.$extension;
+                ->save($destinationPath.'/'.$file);
+
+            $recipe->image = $file;
         }
 
         $recipe->save();
 
-        $ingredients = request('ingredient_count');
-        for ($count = 1; $count <= $ingredients; $count++) {
+        $ingredient_index = request('ingredient_index');
+        for ($count = 1; $count <= $ingredient_index; $count++) {
             if ($request->has('ingredient' . $count)) {
                 if (!Ingredient::where('name', '=' , request('ingredient' . $count))->exists()) {
                     $ingredient = new Ingredient;

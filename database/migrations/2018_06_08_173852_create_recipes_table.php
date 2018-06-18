@@ -20,6 +20,8 @@ class CreateRecipesTable extends Migration
             $table->longText('description');
             $table->string('category');
             $table->float('rating')->default(0);
+            $table->integer('rating_count')->default(0);
+            $table->integer('ingredient_count')->default(1);
             $table->timestamps();
         });
     }

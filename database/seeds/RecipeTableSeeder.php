@@ -33,8 +33,10 @@ class RecipeTableSeeder extends Seeder
                 Teig auf ca. 1 1/2 cm Dicke ausrollen und mit einem Ausstecher Kreise ausstechen. Etwas von dem Pulled Pork in der Mitte platzieren, Enden zusammenfalten, gut verschließen und zu Knödel formen. Im Salzwasser für ca. 10-12 Minuten köcheln lassen. Knödel aus dem Wasser heben und gut abtropfen lassen.
                 Etwas von dem restlichen Pulled Pork auf einem Teller platzieren, Knödel darauf setzen und die Erdäpfelknödel mit Pulled-Pork-Füllung servieren.
                 Tipp: Natürlich können Sie auch mehr Erdäpfelteig machen, damit mehr Erdäpfelknödel mit Pulled-Pork-Füllung und kein Pulled Pork zum Dazuessen übrig bleibt.",
-            'category' =>   'sauer',
-            'rating' => 5
+            'category' => 'Sauer',
+            'rating' => 4.3,
+            'rating_count' => 13,
+            'ingredient_count' => 26
         ));
 
         $recipeErdaepfelKnoedelMitPulledPork->ingredients()->attach("Schweinerücken",   [ 'quantity' => "1000" ,    'measurement' => "g"]);

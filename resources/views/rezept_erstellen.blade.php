@@ -7,7 +7,8 @@
 @extends('layout.formlayout')
 @section('content')
     <script type='text/javascript'>
-        let count = 1;
+        let ingredient_index = 1;
+        let ingredient_count = 1;
 
         function setup() {
             toHtmlNumericInput('quantity1');
@@ -38,14 +39,14 @@
                 const key = e.which || e.keyCode; // http://keycode.info/
                 if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
                     // disallowed keys
-                    (key >= 59 && key <= 96 || key == 32 || key >= 106 && key <= 109 || key == 111 || key == 160 ||
+                    (key >= 59 && key <= 95 || key == 32 || key >= 106 && key <= 109 || key == 111 || key == 160 ||
                         key == 163 || key == 171 || key == 173 || key == 189 || key == 192 || key == 222)) {
                     e.preventDefault();
                     return false;
                 }
                 if ((e.shiftKey || e.altKey) &&
                     // disallowed keys with shift and alt gr
-                    (key >= 48 && key <= 96 ||
+                    (key >= 48 && key <= 95 ||
                         key >= 106 && key <= 109 || key == 111 || key == 160 || key == 163 || key == 163 ||
                         key == 171 || key == 173 || key == 188 || key == 190 || key == 192 || key == 222)) {
                     e.preventDefault();
@@ -53,7 +54,7 @@
                 }
                 if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
                     key >= 48 && key <= 57 || // numbers
-                    key >= 97 && key <= 105 || // Numeric keypad
+                    key >= 96 && key <= 105 || // Numeric keypad
                     // allow: Ctrl+A, Ctrl+C & Ctrl+X
                     (e.keyCode == 65 && e.ctrlKey === true) || (key == 67 && e.ctrlKey === true) || (key == 88 && e.ctrlKey === true) ||
                     // allow: (home, end, left, right) & Backspace and Tab and Enter and Del and Ins
@@ -72,7 +73,8 @@
         }
 
         function addIngredient() {
-            count++;
+            ingredient_index++;
+            ingredient_count++;
 
             const container = document.getElementById("container-ingredient");
             const $div = document.createElement('div');
@@ -86,8 +88,9 @@
 
             container.appendChild($div);
 
-            toHtmlNumericInput('quantity' + count);
-            document.getElementById('ingredient_index').value = count;
+            toHtmlNumericInput('quantity' + ingredient_index);
+            document.getElementById('ingredient_index').value = ingredient_index;
+            document.getElementById('ingredient_count').value = ingredient_count;
         }
 
         function createIngredientElement(type, ph) {
@@ -98,8 +101,8 @@
             // Common attributes
             input.type = "text";
             input.className = 'form-control';
-            input.id = type + count;
-            input.name = type + count;
+            input.id = type + ingredient_index;
+            input.name = type + ingredient_index;
             input.placeholder = ph;
 
             div_valid.className = 'valid-feedback'
@@ -137,7 +140,7 @@
 
             button.className = 'btn btn-danger btn-sm';
             button.type = 'button';
-            button.id = "delete_ingredient" + count;
+            button.id = "delete_ingredient" + ingredient_index;
             button.innerText = 'x';
             button.addEventListener("click", deleteIngredient);
 
@@ -147,6 +150,7 @@
         }
 
         function deleteIngredient(e) {
+            document.getElementById('ingredient_count').value = --ingredient_count;
             e.target.parentElement.parentElement.remove();
         }
 
@@ -197,7 +201,7 @@
 
             {{ csrf_field() }}
 
-            <input type="hidden" name="ingredient_count" id="ingredient_index" value="1" \>
+            <input type="hidden" name="ingredient_index" id="ingredient_index" value="1" \>
             <input type="hidden" name="ingredient_count" id="ingredient_count" value="1" \>
 
             <div class="form-group col-auto">
