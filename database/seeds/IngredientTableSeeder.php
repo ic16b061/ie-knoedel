@@ -31,12 +31,16 @@ class IngredientTableSeeder extends Seeder
         $ingredientKreuzkuemmel     = \App\Ingredient::create(array('name' => "Kreuzkümmel (gemahlen)"));
         $ingredientKnoblauch        = \App\Ingredient::create(array('name' => "Knoblauch (getrocknet)"));
         $ingredientCayennepfeffer   = \App\Ingredient::create(array('name' => "Cayennepfeffer (gemahlen)"));
-        $ingredientErdaepfel        = \App\Ingredient::create(array('name' => "Erdäpfel (mehlig)"));
-        $ingredientMehl             = \App\Ingredient::create(array('name' => "Mehl (griffig)"));
+        $ingredientErdaepfelmehl        = \App\Ingredient::create(array('name' => "Erdäpfel (mehlig)"));
+        $ingredientErdaepfel        = \App\Ingredient::create(array('name' => "Erdäpfel"));
+        $ingredientMehlgrif             = \App\Ingredient::create(array('name' => "Mehl (griffig)"));
+        $ingredientMehlglatt          = \App\Ingredient::create(array('name' => "Mehl (glatt)"));
+        $ingredientMehl             = \App\Ingredient::create(array('name' => "Mehl"));
         $ingredientWeizengriess     = \App\Ingredient::create(array('name' => "Weizengrieß"));
         $ingredientEidotter         = \App\Ingredient::create(array('name' => "Eidotter"));
+        $ingredientEi         = \App\Ingredient::create(array('name' => "Ei"));
         $ingredientSalz             = \App\Ingredient::create(array('name' => "Salz"));
-        $ingredientMuskatnuss       = \App\Ingredient::create(array('name' => "Muskatnuss (gerieben)"));
+        $ingredientMuskatnussger       = \App\Ingredient::create(array('name' => "Muskatnuss (gerieben)"));
         $ingredientKnoblauchzehe    = \App\Ingredient::create(array('name' => "Knoblauchzehe"));
         $ingredientApfelessig       = \App\Ingredient::create(array('name' => "Apfelessig"));
         $ingredientApfelsaft        = \App\Ingredient::create(array('name' => "Apfelsaft"));
@@ -45,6 +49,33 @@ class IngredientTableSeeder extends Seeder
         $ingredientWorcestersauce   = \App\Ingredient::create(array('name' => "Worcestersauce"));
         $ingredientAhornsirup       = \App\Ingredient::create(array('name' => "Ahornsirup"));
         $ingredientWhiskey          = \App\Ingredient::create(array('name' => "Whiskey"));
+        $ingredientMarillen         = \App\Ingredient::create(array('name' => "Marillen"));
+        $ingredientZuckerwuerfel    = \App\Ingredient::create(array('name' => "Zuckerwürfel"));
+        $ingredientZucker    = \App\Ingredient::create(array('name' => "Zucker"));
+        $ingredientButter           = \App\Ingredient::create(array('name' => "Butter"));
+        $ingredientSemmelbroesel          = \App\Ingredient::create(array('name' => "Semmelbrösel"));
+        $ingredientZimt         = \App\Ingredient::create(array('name' => "Zimt"));
+        $ingredientKristallzucker         = \App\Ingredient::create(array('name' => "Kristallzucker"));
+        $ingredientStaubzucker         = \App\Ingredient::create(array('name' => "Staubzucker"));
+        $ingredientButterzerl          = \App\Ingredient::create(array('name' => "Butter (zerlassen)"));
+        $ingredientGries          = \App\Ingredient::create(array('name' => "Gries"));
+        $ingredientMilch         = \App\Ingredient::create(array('name' => "Milch"));
+        $ingredientGerm         = \App\Ingredient::create(array('name' => "Germ"));
+        $ingredientPowidl          = \App\Ingredient::create(array('name' => "Powidl"));
+        $ingredientGraumohngeri         = \App\Ingredient::create(array('name' => "Graumohn (gerieben)"));
+        $ingredientMagertopfen         = \App\Ingredient::create(array('name' => "Magertopfen"));
+        $ingredientSchlagobers        = \App\Ingredient::create(array('name' => "Schlagobers"));
+        $ingredientPreiselbeermarmelade        = \App\Ingredient::create(array('name' => "Preiselbeermarmelade"));
+        $ingredientSemmelwürfel       = \App\Ingredient::create(array('name' => "Semmelwürfel"));
+        $ingredientRotkraut       = \App\Ingredient::create(array('name' => "Rotkraut"));
+        $ingredientSelchfleisch        = \App\Ingredient::create(array('name' => "Selchfleisch"));
+        $ingredientKartoffel        = \App\Ingredient::create(array('name' => "Kartoffel"));
+        $ingredientKartoffel        = \App\Ingredient::create(array('name' => "Zwiebel"));
+        $ingredientMajoran        = \App\Ingredient::create(array('name' => "Majoran"));
+        $ingredienSemmelknoedel       = \App\Ingredient::create(array('name' => "Semmelknödel"));
+        $ingredienSemmel      = \App\Ingredient::create(array('name' => "Semmel"));
+        $ingredienKraeuterfrisch       = \App\Ingredient::create(array('name' => "Kräuter (frisch)"));
+
 
     }
 }
