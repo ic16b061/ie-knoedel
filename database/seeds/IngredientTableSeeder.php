@@ -51,10 +51,10 @@ class IngredientTableSeeder extends Seeder
         $ingredientWhiskey          = \App\Ingredient::create(array('name' => "Whiskey"));
         $ingredientMarillen         = \App\Ingredient::create(array('name' => "Marillen"));
         $ingredientZuckerwuerfel    = \App\Ingredient::create(array('name' => "Zuckerwürfel"));
-        $ingredientZucker    = \App\Ingredient::create(array('name' => "Zucker"));
+        $ingredientZucker           = \App\Ingredient::create(array('name' => "Zucker"));
         $ingredientButter           = \App\Ingredient::create(array('name' => "Butter"));
-        $ingredientSemmelbroesel          = \App\Ingredient::create(array('name' => "Semmelbrösel"));
-        $ingredientZimt         = \App\Ingredient::create(array('name' => "Zimt"));
+    $ingredientSemmelbroesel        = \App\Ingredient::create(array('name' => "Semmelbrösel"));
+        $ingredientZimt             = \App\Ingredient::create(array('name' => "Zimt"));
         $ingredientKristallzucker         = \App\Ingredient::create(array('name' => "Kristallzucker"));
         $ingredientStaubzucker         = \App\Ingredient::create(array('name' => "Staubzucker"));
         $ingredientButterzerl          = \App\Ingredient::create(array('name' => "Butter (zerlassen)"));

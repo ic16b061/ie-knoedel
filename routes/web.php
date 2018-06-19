@@ -15,9 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/kontakt', 'ContactController@show');
 
-Route::post('/kontakt', 'ContactController@send');
+Route::post('/kontakt', [
+    'uses' => 'ContactController@send',
+    'as' => 'contact.store'
+]);
+
+Route::get('/kontakt', [
+    'uses' => 'ContactController@create'
+]);
 
 Route::get('/rezepte', 'RecipeController@index');
 

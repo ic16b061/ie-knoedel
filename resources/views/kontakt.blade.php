@@ -12,9 +12,11 @@
                     <br>
                     <h1>Kontakt mit Knödl </h1>
 
+                    @if (Session::has('flash_message'))
+                        <div class="alert alert-success">{{Session::get('flash_message')}}</div>
+                    @endif
                     <form class="needs-validation" id="contact-form" method="post" action="/kontakt" role="form" novalidate>
-
-                        {{ csrf_field() }}
+                        {{csrf_field()}}
 
                         <div class="messages"></div>
 
@@ -61,7 +63,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="submit" class="btn btn-success btn-send" value="Nachricht senden">
+                                    <button class="btn btn-primary">Senden</button>
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -79,22 +81,4 @@
 
         </div> <!-- /.container-->
 
-        <script type='text/javascript'>
-            function setup() {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                const forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                const validation = Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }
-
-            window.addEventListener("load", setup);
-        </script>
 @endsection
