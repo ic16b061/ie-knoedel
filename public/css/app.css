@@ -13578,6 +13578,18 @@ input[type=file] {
   height: 0;
 }
 
+.height85 {
+  height: 85px;
+}
+
+.height177 {
+  height: 177px;
+}
+
+.p-top10 {
+  padding-top: 10px;
+}
+
 .navbar-laravel {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

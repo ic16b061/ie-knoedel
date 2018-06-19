@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Knödel Rezepte</title>
+        <title>Knödel</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -66,27 +66,12 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
             <div class="content">
-                <div class="title m-b-md">
-                    Knödel Rezepte
-                </div>
+                <div class="title m-b-md">Knödel</div>
 
                 <div class="links">
                     <a href="/rezepte">Rezepte</a>
-                    <a href="/topten">Top 3 Rezepte</a>
-                    <a href="/kontakt">Kontaktformular</a>
-                    <a href="/news">News</a>
+                    <a href="/rezepte/top">Top 3</a>
                 </div>
             </div>
         </div>

@@ -7,12 +7,22 @@
 @extends('layout.formlayout')
 @section('content')
     <script type='text/javascript'>
-        let count = 1;
+        let ingredient_index = 0;
+        let ingredient_count = 0;
+        let image_orig;
 
         function setup() {
-            toHtmlNumericInput('quantity1');
+            let i;
+            image_orig = document.getElementById('img_preview').src;
+            ingredient_index = document.getElementById('ingredient_index').value;
+            ingredient_count = document.getElementById('ingredient_count').value;
+
             document.getElementById("add_ingredient").addEventListener("click", addIngredient);
-            document.getElementById("delete_ingredient1").addEventListener("click", deleteIngredient);
+
+            for (i = 1; i <= ingredient_count; i++) {
+                toHtmlNumericInput('quantity' + i);
+                document.getElementById("delete_ingredient" + i).addEventListener("click", deleteIngredient);
+            }
 
             // Fetch all the forms we want to apply custom Bootstrap validation styles to
             const forms = document.getElementsByClassName('needs-validation');
@@ -53,7 +63,7 @@
                 }
                 if (!e.shiftKey && !e.altKey && !e.ctrlKey &&
                     key >= 48 && key <= 57 || // numbers
-                    key >= 95 && key <= 105 || // Numeric keypad
+                    key >= 96 && key <= 105 || // Numeric keypad
                     // allow: Ctrl+A, Ctrl+C & Ctrl+X
                     (e.keyCode == 65 && e.ctrlKey === true) || (key == 67 && e.ctrlKey === true) || (key == 88 && e.ctrlKey === true) ||
                     // allow: (home, end, left, right) & Backspace and Tab and Enter and Del and Ins
@@ -72,7 +82,8 @@
         }
 
         function addIngredient() {
-            count++;
+            ingredient_index++;
+            ingredient_count++;
 
             const container = document.getElementById("container-ingredient");
             const $div = document.createElement('div');
@@ -86,8 +97,9 @@
 
             container.appendChild($div);
 
-            toHtmlNumericInput('quantity' + count);
-            document.getElementById('ingredient_count').value = count;
+            toHtmlNumericInput('quantity' + ingredient_index);
+            document.getElementById('ingredient_index').value = ingredient_index;
+            document.getElementById('ingredient_count').value = ingredient_count;
         }
 
         function createIngredientElement(type, ph) {
@@ -98,8 +110,8 @@
             // Common attributes
             input.type = "text";
             input.className = 'form-control';
-            input.id = type + count;
-            input.name = type + count;
+            input.id = type + ingredient_index;
+            input.name = type + ingredient_index;
             input.placeholder = ph;
 
             div_valid.className = 'valid-feedback'
@@ -137,7 +149,7 @@
 
             button.className = 'btn btn-danger btn-sm';
             button.type = 'button';
-            button.id = "delete_ingredient" + count;
+            button.id = "delete_ingredient" + ingredient_index;
             button.innerText = 'x';
             button.addEventListener("click", deleteIngredient);
 
@@ -147,6 +159,7 @@
         }
 
         function deleteIngredient(e) {
+            document.getElementById('ingredient_count').value = --ingredient_count;
             e.target.parentElement.parentElement.remove();
         }
 
@@ -157,23 +170,37 @@
                 reader.onload = function (e) {
                     $('#img_preview')
                         .attr('src', e.target.result);
-                    const upload = document.getElementById('file-label');
 
-                    const image = document.getElementById('image').value;
-                    const filename = basename(image, '\\');
-                    upload.innerText = filename;
-
-                    const preview_text = document.getElementById('img_preview_text');
-                    preview_text.innerText = "Neues Bild";
+                    const filename = basename(document.getElementById('image').value, '\\');
+                    document.getElementById('file-label').innerText = filename;
+                    document.getElementById('img_preview_text').innerText = "Neues Bild";
                 };
 
                 reader.readAsDataURL(input.files[0]);
-                const div = document.getElementById("image_preview");
-                div.classList.remove('heightless');
-                div.classList.remove('invisible');
-                const div2 = document.getElementById("container-ingredient");
-                div2.prepend(document.createElement("br"));
+
+                const div_button = document.createElement('div');
+                const button = document.createElement('button');
+
+                div_button.className = 'ml-2';
+                div_button.id = 'reset_button';
+
+                button.className = 'btn btn-danger btn-sm';
+                button.type = 'button';
+                button.id = "reset_image";
+                button.innerText = 'Zurücksetzen';
+                button.addEventListener("click", resetImage);
+
+                div_button.appendChild(button);
+                document.getElementById('image_preview').appendChild(div_button);
             }
+        }
+
+        function resetImage() {
+            document.getElementById('img_preview').src = image_orig;
+            document.getElementById('img_preview_text').innerText = 'Aktuelles Bild';
+            document.getElementById('file-label').innerText = 'Neues Bild hochladen...';
+            document.getElementById('image').value = '';
+            document.getElementById('image_preview').removeChild(document.getElementById('reset_button'));
         }
 
         function basename(str, sep) {
@@ -184,7 +211,7 @@
     </script>
 
 
-    <section class="jumbotron text-center recipe-header">
+    <section class="jumbotron text-center">
         <div class="container">
             <h1 class="jumbotron-heading">Rezept bearbeiten</h1>
             <p class="lead text-muted">Haben Sie ein Fehler im Rezept gefunden?<br>Oder haben Sie hilfreiche Verbesserungsvorschläge?<br>Machen Sie unsere Rezepte einfach noch leckerer!</p>
@@ -197,7 +224,8 @@
 
             {{ csrf_field() }}
 
-            <input type="hidden" name="ingredient_count" id="ingredient_count" value="2" \>
+            <input type="hidden" name="ingredient_index" id="ingredient_index" value="{{ $recipe->ingredient_count }}" \>
+            <input type="hidden" name="ingredient_count" id="ingredient_count" value="{{ $recipe->ingredient_count }}" \>
 
             <div class="form-group col-auto">
                 <label for="title">Rezept-Titel</label>
@@ -230,7 +258,7 @@
             </div>
 
 
-            <div class="d-flex justify-content-center align-items-center container"
+            <div class="d-flex justify-content-center align-items-end container"
                  id="image_preview">
                 <div>
                     <div>
@@ -270,7 +298,7 @@
                             <div class="valid-feedback">Schaut gut aus!</div>
                         </div>
                         <div class="mb-2">
-                            <button type="button" class="btn btn-danger btn-sm" id="delete_ingredient1">x</button>
+                            <button type="button" class="btn btn-danger btn-sm" id="delete_ingredient{{ $loop->iteration }}">x</button>
                         </div>
                     </div>
                     @endforeach

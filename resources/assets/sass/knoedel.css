@@ -87,3 +87,15 @@ input[type=file] {
 .heightless {
     height: 0;
 }
+
+.height85 {
+    height: 85px;
+}
+
+.height177 {
+    height: 177px;
+}
+
+.p-top10 {
+    padding-top: 10px;
+}

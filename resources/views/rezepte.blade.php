@@ -9,10 +9,10 @@
                         <div class="col-md-4">
                             <div class="card mb-4 box-shadow">
                                 <img class="card-img-top" src="@php echo asset("img/$recipe->image") @endphp" alt="{{ $recipe->title }}">
-                                <div class="card-header" >
+                                <div class="card-header height85" >
                                     <h3 class="jumbotron-heading">{{$recipe->title}}</h3>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body height177">
                                     <p class="card-text">
                                         @php
                                             echo mb_substr($recipe->description, 0, 150);
@@ -36,7 +36,7 @@
                                         </div>
                                         -->
 
-                                        <div class="star-rating__wrap">
+                                        <div class="star-rating__wrap p-top10">
                                             <input class="star-rating__input" id="star-rating-5" type="radio" name="rating" value="5">
                                             <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-5" title="5 out of 5 stars"></label>
                                             <input class="star-rating__input" id="star-rating-4" type="radio" name="rating" value="4">
