@@ -219,8 +219,7 @@
     </section>
 
     <div class="justify-content-center align-items-center container py-5 bg-light">
-        <form class="needs-validation" data-toggle="validator" method="post" action="/rezepte/{{ $recipe->id }}"
-              enctype="multipart/form-data" novalidate>
+        <form class="needs-validation" method="post" action="/rezepte/{{ $recipe->id }}" enctype="multipart/form-data" novalidate>
 
             {{ csrf_field() }}
 
@@ -321,6 +320,12 @@
 
             <div>
                 <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Knödel es rein!</button>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <p class="text-muted"><strong>*</strong>Diese Felder sind erforderlich</p>
+                </div>
             </div>
 
 

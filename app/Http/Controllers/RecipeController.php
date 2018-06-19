@@ -224,12 +224,20 @@ class RecipeController extends Controller
     }
 
     /**
-     * Display a listing of the resource with top10 rating.
+     * Display a listing of the resource with top rating.
      *
      * @return \Illuminate\Http\Response
      */
-    public function topten() {
-        // Recipe::orderBy('rating', 'DESC')->get()
-        return view('/topten')->with('recipes', Recipe::orderBy('rating', 'DESC')->take(3)->get());
+    public function top() {
+        return view('rezepte_top')->with('recipes', Recipe::orderBy('rating', 'DESC')->take(3)->get());
+    }
+
+    /**
+     * Update the rating of a recipe.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function rate(Request $request, $id) {
+        dd($request->all(), $id);
     }
 }

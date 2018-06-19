@@ -5,7 +5,7 @@
 </head>
 <body>
     @include('layout.partials.nav')
-    @include('layout.partials.toptenheader')
+    @include('layout.partials.topheader')
     @yield('content')
     @include('layout.partials.footer')
     @include('layout.partials.footer-scripts')

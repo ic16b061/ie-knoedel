@@ -1,4 +1,4 @@
-@extends('layout.toptenlayout')
+@extends('layout.toplayout')
 @section('content')
     <div class="album py-5 bg-light">
         <div class="container">
