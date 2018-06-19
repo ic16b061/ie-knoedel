@@ -6,6 +6,130 @@
 
 @extends('layout.formlayout')
 @section('content')
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Rezept bearbeiten</h1>
+            <p class="lead text-muted">Haben Sie ein Fehler im Rezept gefunden?<br>Oder haben Sie hilfreiche Verbesserungsvorschläge?<br>Machen Sie unsere Rezepte einfach noch leckerer!</p>
+        </div>
+    </section>
+
+
+
+    <div class="justify-content-center align-items-center container py-5 bg-light">
+        <form class="needs-validation" method="post" action="/rezepte/{{ $recipe->id }}" enctype="multipart/form-data" novalidate>
+
+            {{ csrf_field() }}
+
+            <input type="hidden" name="ingredient_index" id="ingredient_index" value="{{ $recipe->ingredient_count }}" \>
+            <input type="hidden" name="ingredient_count" id="ingredient_count" value="{{ $recipe->ingredient_count }}" \>
+
+            <div class="form-group col-auto">
+                <label for="title">Rezept-Titel</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Titel" value="{{ $recipe->title }}" required>
+                <div class="valid-feedback">Schaut gut aus!</div>
+                <div class="invalid-feedback">Bitte geben Sie einen Titel ein</div>
+            </div>
+
+
+            <div class="form-group form-row col-auto">
+                <div class="form-group col-sm-3">
+                    <label for="category">Kategorie</label>
+                    <select class="form-control" id="category" name="category" value="{{ $recipe->category }}">
+                        <option {{ $recipe->category == 'Allgemein' ? 'selected=selected' : '' }}>Allgemein</option>
+                        <option {{ $recipe->category == 'Sauer' ? 'selected=selected' : '' }}>Sauer</option>
+                        <option {{ $recipe->category == 'Süß' ? 'selected=selected' : '' }}>Süß</option>
+                    </select>
+                    <div class="valid-feedback">Schaut gut aus!</div>
+                </div>
+                <div class="col-sm">
+                    <label class="" for="image">Bild-Upload</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="image" name="image" lang="de2" accept="image/*"
+                               onchange="createPreview(this);">
+                        <label class="custom-file-label" for="image" id="file-label">Neues Bild hochladen...</label>
+                        <div class="valid-feedback">Schaut gut aus!</div>
+                        <div class="invalid-feedback">Bitte wählen Sie ein Bild aus</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="d-flex justify-content-center align-items-end container"
+                 id="image_preview">
+                <div>
+                    <div>
+                        <label for="img_preview" id="img_preview_text">Aktuelles Bild</label>
+                    </div>
+                    <div>
+                        <img class="img-fluid " id="img_preview" src="/img/{{ $recipe->image }}" alt="Rezeptbild"/>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+            <div class="form-group col-auto">
+                <div id="container-ingredient">
+                    <label for="ingredient">Zutaten</label>
+                    @foreach ($ingredients as $ingredient)
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-6 mb-2">
+                            <input type="text" class="form-control" id="ingredient{{ $loop->iteration }}"
+                                   name="ingredient{{ $loop->iteration }}"  placeholder="Zutat"
+                                   value="{{ $ingredient->ingredient_name }}" required>
+                            <div class="valid-feedback">Schaut gut aus!</div>
+                            <div class="invalid-feedback">Bitte geben Sie eine Zutat ein</div>
+                        </div>
+                        <div class="col mb-2">
+                            <input type="text" class="form-control" id="measurement{{ $loop->iteration }}"
+                                   name="measurement{{ $loop->iteration }}" placeholder="Maßeinheit"
+                                   value="{{ $ingredient->measurement }}">
+                            <div class="valid-feedback">Schaut gut aus!</div>
+                        </div>
+                        <div class="col mb-2">
+                            <input type="text" class="form-control" id="quantity{{ $loop->iteration }}"
+                                   name="quantity{{ $loop->iteration }}" placeholder="Menge"
+                                   value="{{ $ingredient->quantity }}">
+                            <div class="valid-feedback">Schaut gut aus!</div>
+                        </div>
+                        <div class="mb-2">
+                            <button type="button" class="btn btn-danger btn-sm" id="delete_ingredient{{ $loop->iteration }}">x</button>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <div>
+                    <button type="button" class="btn btn-success btn-sm" id="add_ingredient">+</button>
+                </div>
+            </div>
+
+
+            <div class="form-group col-auto">
+                <label for="description">Beschreibung</label>
+                <textarea class="form-control" id="description" name="description" placeholder="Beschreibung" rows="10"
+                          required>{{ $recipe->description }}</textarea>
+                <div class="valid-feedback">Schaut gut aus!</div>
+                <div class="invalid-feedback">Bitte geben Sie eine Beschreibung ein</div>
+            </div>
+
+            <br>
+
+            <div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Knödel es rein!</button>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <p class="text-muted"><strong>*</strong>Diese Felder sind erforderlich</p>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+
+
     <script type='text/javascript'>
         let ingredient_index = 0;
         let ingredient_count = 0;
@@ -209,126 +333,4 @@
 
         window.addEventListener("load", setup);
     </script>
-
-
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1 class="jumbotron-heading">Rezept bearbeiten</h1>
-            <p class="lead text-muted">Haben Sie ein Fehler im Rezept gefunden?<br>Oder haben Sie hilfreiche Verbesserungsvorschläge?<br>Machen Sie unsere Rezepte einfach noch leckerer!</p>
-        </div>
-    </section>
-
-    <div class="justify-content-center align-items-center container py-5 bg-light">
-        <form class="needs-validation" method="post" action="/rezepte/{{ $recipe->id }}" enctype="multipart/form-data" novalidate>
-
-            {{ csrf_field() }}
-
-            <input type="hidden" name="ingredient_index" id="ingredient_index" value="{{ $recipe->ingredient_count }}" \>
-            <input type="hidden" name="ingredient_count" id="ingredient_count" value="{{ $recipe->ingredient_count }}" \>
-
-            <div class="form-group col-auto">
-                <label for="title">Rezept-Titel</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Titel" value="{{ $recipe->title }}" required>
-                <div class="valid-feedback">Schaut gut aus!</div>
-                <div class="invalid-feedback">Bitte geben Sie einen Titel ein</div>
-            </div>
-
-
-            <div class="form-group form-row col-auto">
-                <div class="form-group col-sm-3">
-                    <label for="category">Kategorie</label>
-                    <select class="form-control" id="category" name="category" value="{{ $recipe->category }}">
-                        <option {{ $recipe->category == 'Allgemein' ? 'selected=selected' : '' }}>Allgemein</option>
-                        <option {{ $recipe->category == 'Sauer' ? 'selected=selected' : '' }}>Sauer</option>
-                        <option {{ $recipe->category == 'Süß' ? 'selected=selected' : '' }}>Süß</option>
-                    </select>
-                    <div class="valid-feedback">Schaut gut aus!</div>
-                </div>
-                <div class="col-sm">
-                    <label class="" for="image">Bild-Upload</label>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="image" name="image" lang="de2" accept="image/*"
-                               onchange="createPreview(this);">
-                        <label class="custom-file-label" for="image" id="file-label">Neues Bild hochladen...</label>
-                        <div class="valid-feedback">Schaut gut aus!</div>
-                        <div class="invalid-feedback">Bitte wählen Sie ein Bild aus</div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="d-flex justify-content-center align-items-end container"
-                 id="image_preview">
-                <div>
-                    <div>
-                        <label for="img_preview" id="img_preview_text">Aktuelles Bild</label>
-                    </div>
-                    <div>
-                        <img class="img-fluid " id="img_preview" src="/img/{{ $recipe->image }}" alt="Rezeptbild"/>
-                    </div>
-                </div>
-            </div>
-
-            <br>
-            <br>
-
-            <div class="form-group col-auto">
-                <div id="container-ingredient">
-                    <label for="ingredient">Zutaten</label>
-                    @foreach ($ingredients as $ingredient)
-                    <div class="form-row align-items-center">
-                        <div class="col-sm-6 mb-2">
-                            <input type="text" class="form-control" id="ingredient{{ $loop->iteration }}"
-                                   name="ingredient{{ $loop->iteration }}"  placeholder="Zutat"
-                                   value="{{ $ingredient->ingredient_name }}" required>
-                            <div class="valid-feedback">Schaut gut aus!</div>
-                            <div class="invalid-feedback">Bitte geben Sie eine Zutat ein</div>
-                        </div>
-                        <div class="col mb-2">
-                            <input type="text" class="form-control" id="measurement{{ $loop->iteration }}"
-                                   name="measurement{{ $loop->iteration }}" placeholder="Maßeinheit"
-                                   value="{{ $ingredient->measurement }}">
-                            <div class="valid-feedback">Schaut gut aus!</div>
-                        </div>
-                        <div class="col mb-2">
-                            <input type="text" class="form-control" id="quantity{{ $loop->iteration }}"
-                                   name="quantity{{ $loop->iteration }}" placeholder="Menge"
-                                   value="{{ $ingredient->quantity }}">
-                            <div class="valid-feedback">Schaut gut aus!</div>
-                        </div>
-                        <div class="mb-2">
-                            <button type="button" class="btn btn-danger btn-sm" id="delete_ingredient{{ $loop->iteration }}">x</button>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-                <div>
-                    <button type="button" class="btn btn-success btn-sm" id="add_ingredient">+</button>
-                </div>
-            </div>
-
-
-            <div class="form-group col-auto">
-                <label for="description">Beschreibung</label>
-                <textarea class="form-control" id="description" name="description" placeholder="Beschreibung" rows="10"
-                          required>{{ $recipe->description }}</textarea>
-                <div class="valid-feedback">Schaut gut aus!</div>
-                <div class="invalid-feedback">Bitte geben Sie eine Beschreibung ein</div>
-            </div>
-
-            <br>
-
-            <div>
-                <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Knödel es rein!</button>
-            </div>
-
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <p class="text-muted"><strong>*</strong>Diese Felder sind erforderlich</p>
-                </div>
-            </div>
-
-
-        </form>
-    </div>
 @endsection

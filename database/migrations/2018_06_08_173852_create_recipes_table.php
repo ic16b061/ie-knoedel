@@ -19,7 +19,7 @@ class CreateRecipesTable extends Migration
             $table->string('image')->default('placeholder.png');
             $table->longText('description');
             $table->string('category');
-            $table->float('rating', 2, 1)->default(0);
+            $table->float('rating', 3, 2)->default(0);
             $table->integer('rating_count')->default(0);
             $table->integer('ingredient_count')->default(1);
             $table->timestamps();

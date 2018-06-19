@@ -237,7 +237,24 @@ class RecipeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function rate(Request $request, $id) {
-        dd($request->all(), $id);
+    public function rate(Request $request) {
+        //dd($request->all());
+
+        $id = request('id');
+        $recipe = Recipe::find($id);
+
+        // calculate new rating
+        $current_rating = $recipe->rating;
+        $current_rating_count = $recipe->rating_count;
+        $new_rating_count = $current_rating_count + 1;
+        $new_rating = (($current_rating * $current_rating_count) + request('rating')) / $new_rating_count;
+
+        // save new values to database
+        $recipe->rating_count = $new_rating_count;
+        $recipe->rating = $new_rating;
+
+        $recipe->save();
+
+        return response()->json(['Vielen Dank für Ihre Abstimmung!']);
     }
 }
