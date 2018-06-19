@@ -6,6 +6,120 @@
 
 @extends('layout.formlayout')
 @section('content')
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Rezept hinzufügen</h1>
+            <p class="lead text-muted">Erweitern Sie unsere Knödel-Rezepte um ein neues leckeres Gericht!</p>
+        </div>
+    </section>
+
+    <div class="justify-content-center align-items-center container py-5 bg-light">
+        <form class="needs-validation" method="post" action="/rezepte" enctype="multipart/form-data" novalidate>
+
+            {{ csrf_field() }}
+
+            <input type="hidden" name="ingredient_index" id="ingredient_index" value="1" \>
+            <input type="hidden" name="ingredient_count" id="ingredient_count" value="1" \>
+
+            <div class="form-group col-auto">
+                <label for="title">Rezept-Titel *</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Titel" required>
+                <div class="valid-feedback">Schaut gut aus!</div>
+                <div class="invalid-feedback">Bitte geben Sie einen Titel ein</div>
+            </div>
+
+
+            <div class="form-group form-row col-auto">
+                <div class="form-group col-sm-3">
+                    <label for="category">Kategorie *</label>
+                    <select class="form-control" id="category" name="category">
+                        <option>Allgemein</option>
+                        <option>Sauer</option>
+                        <option>Süß</option>
+                    </select>
+                    <div class="valid-feedback">Schaut gut aus!</div>
+                </div>
+                <div class="col-sm">
+                    <label class="" for="image">Bild-Upload *</label>
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="image" name="image" lang="de" accept="image/*"
+                               onchange="createPreview(this);" required>
+                        <label class="custom-file-label" for="image" id="file-label">Bild hochladen...</label>
+                        <div class="valid-feedback">Schaut gut aus!</div>
+                        <div class="invalid-feedback">Bitte wählen Sie ein Bild aus</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="invisible heightless d-flex justify-content-center align-items-center container"
+                 id="image_preview">
+                <div>
+                    <div>
+                        <label for="img_preview">Vorschau</label>
+                    </div>
+                    <div>
+                        <img class="img-fluid " id="img_preview" src="" alt="Rezeptbild"/>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="form-group col-auto">
+                <div id="container-ingredient">
+                    <label for="ingredient">Zutaten</label>
+                    <div class="form-row align-items-center">
+                        <div class="col-sm-6 mb-2">
+                            <input type="text" class="form-control" id="ingredient1" name="ingredient1"
+                                   placeholder="Zutat *" required>
+                            <div class="valid-feedback">Schaut gut aus!</div>
+                            <div class="invalid-feedback">Bitte geben Sie eine Zutat ein</div>
+                        </div>
+                        <div class="col mb-2">
+                            <input type="text" class="form-control" id="measurement1" name="measurement1"
+                                   placeholder="Maßeinheit">
+                            <div class="valid-feedback">Schaut gut aus!</div>
+                        </div>
+                        <div class="col mb-2">
+                            <input type="text" class="form-control" id="quantity1" name="quantity1" placeholder="Menge">
+                            <div class="valid-feedback">Schaut gut aus!</div>
+                        </div>
+                        <div class="mb-2">
+                            <button type="button" class="btn btn-danger btn-sm" id="delete_ingredient1">x</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-success btn-sm" id="add_ingredient">+</button>
+                </div>
+            </div>
+
+
+            <div class="form-group col-auto">
+                <label for="description">Beschreibung *</label>
+                <textarea class="form-control" id="description" name="description" placeholder="Beschreibung" rows="10"
+                          required></textarea>
+                <div class="valid-feedback">Schaut gut aus!</div>
+                <div class="invalid-feedback">Bitte geben Sie eine Beschreibung ein</div>
+            </div>
+
+            <br>
+
+            <div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Knödel es rein!</button>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <p class="text-muted"><strong>*</strong>Diese Felder sind erforderlich</p>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+
     <script type='text/javascript'>
         let ingredient_index = 1;
         let ingredient_count = 1;
@@ -186,119 +300,4 @@
 
         window.addEventListener("load", setup);
     </script>
-
-
-    <section class="jumbotron text-center">
-        <div class="container">
-            <h1 class="jumbotron-heading">Rezept hinzufügen</h1>
-            <p class="lead text-muted">Erweitern Sie unsere Knödel-Rezepte um ein neues leckeres Gericht!</p>
-        </div>
-    </section>
-
-    <div class="justify-content-center align-items-center container py-5 bg-light">
-        <form class="needs-validation" method="post" action="/rezepte" enctype="multipart/form-data" novalidate>
-
-            {{ csrf_field() }}
-
-            <input type="hidden" name="ingredient_index" id="ingredient_index" value="1" \>
-            <input type="hidden" name="ingredient_count" id="ingredient_count" value="1" \>
-
-            <div class="form-group col-auto">
-                <label for="title">Rezept-Titel *</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Titel" required>
-                <div class="valid-feedback">Schaut gut aus!</div>
-                <div class="invalid-feedback">Bitte geben Sie einen Titel ein</div>
-            </div>
-
-
-            <div class="form-group form-row col-auto">
-                <div class="form-group col-sm-3">
-                    <label for="category">Kategorie *</label>
-                    <select class="form-control" id="category" name="category">
-                        <option>Allgemein</option>
-                        <option>Sauer</option>
-                        <option>Süß</option>
-                    </select>
-                    <div class="valid-feedback">Schaut gut aus!</div>
-                </div>
-                <div class="col-sm">
-                    <label class="" for="image">Bild-Upload *</label>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="image" name="image" lang="de" accept="image/*"
-                               onchange="createPreview(this);" required>
-                        <label class="custom-file-label" for="image" id="file-label">Bild hochladen...</label>
-                        <div class="valid-feedback">Schaut gut aus!</div>
-                        <div class="invalid-feedback">Bitte wählen Sie ein Bild aus</div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="invisible heightless d-flex justify-content-center align-items-center container"
-                 id="image_preview">
-                <div>
-                    <div>
-                        <label for="img_preview">Vorschau</label>
-                    </div>
-                    <div>
-                        <img class="img-fluid " id="img_preview" src="" alt="Rezeptbild"/>
-                    </div>
-                </div>
-            </div>
-
-            <br>
-
-            <div class="form-group col-auto">
-                <div id="container-ingredient">
-                    <label for="ingredient">Zutaten</label>
-                    <div class="form-row align-items-center">
-                        <div class="col-sm-6 mb-2">
-                            <input type="text" class="form-control" id="ingredient1" name="ingredient1"
-                                   placeholder="Zutat *" required>
-                            <div class="valid-feedback">Schaut gut aus!</div>
-                            <div class="invalid-feedback">Bitte geben Sie eine Zutat ein</div>
-                        </div>
-                        <div class="col mb-2">
-                            <input type="text" class="form-control" id="measurement1" name="measurement1"
-                                   placeholder="Maßeinheit">
-                            <div class="valid-feedback">Schaut gut aus!</div>
-                        </div>
-                        <div class="col mb-2">
-                            <input type="text" class="form-control" id="quantity1" name="quantity1" placeholder="Menge">
-                            <div class="valid-feedback">Schaut gut aus!</div>
-                        </div>
-                        <div class="mb-2">
-                            <button type="button" class="btn btn-danger btn-sm" id="delete_ingredient1">x</button>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <button type="button" class="btn btn-success btn-sm" id="add_ingredient">+</button>
-                </div>
-            </div>
-
-
-            <div class="form-group col-auto">
-                <label for="description">Beschreibung *</label>
-                <textarea class="form-control" id="description" name="description" placeholder="Beschreibung" rows="10"
-                          required></textarea>
-                <div class="valid-feedback">Schaut gut aus!</div>
-                <div class="invalid-feedback">Bitte geben Sie eine Beschreibung ein</div>
-            </div>
-
-            <br>
-
-            <div>
-                <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Knödel es rein!</button>
-            </div>
-
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <p class="text-muted"><strong>*</strong>Diese Felder sind erforderlich</p>
-                </div>
-            </div>
-
-
-        </form>
-    </div>
 @endsection
