@@ -21,19 +21,19 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="form_name">Firstname *</label>
+                                        <label for="form_name">Vorname *</label>
                                         <input id="form_name" type="text" name="name" class="form-control"
-                                               placeholder="Please enter your firstname *" required="required"
-                                               data-error="Firstname is required.">
+                                               placeholder="Bitte Vorname eingeben *" required="required"
+                                               data-error="Vorname ist erforderlich.">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="form_lastname">Lastname *</label>
+                                        <label for="form_lastname">Nachname *</label>
                                         <input id="form_lastname" type="text" name="surname" class="form-control"
-                                               placeholder="Please enter your lastname *" required="required"
-                                               data-error="Lastname is required.">
+                                               placeholder="Bitte Nachname eingeben *" required="required"
+                                               data-error="Nachname ist erforderlich.">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
@@ -41,9 +41,9 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="form_phone">Phone</label>
+                                        <label for="form_phone">Telefonnummer</label>
                                         <input id="form_phone" type="tel" name="phone" class="form-control"
-                                               placeholder="Please enter your phone">
+                                               placeholder="Bitte Telefonnummer eingeben">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
@@ -51,20 +51,20 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="form_message">Message *</label>
+                                        <label for="form_message">Nachricht *</label>
                                         <textarea id="form_message" name="message" class="form-control"
-                                                  placeholder="Message for me *" rows="4" required="required"
-                                                  data-error="Please,leave us a message."></textarea>
+                                                  placeholder="Nachricht erforderlich *" rows="4" required="required"
+                                                  data-error="Hinterlassen Sie uns eine Nachricht."></textarea>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <input type="submit" class="btn btn-success btn-send" value="Send message">
+                                    <input type="submit" class="btn btn-success btn-send" value="Nachricht senden">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p class="text-muted"><strong>*</strong> These fields are required</p>
+                                    <p class="text-muted"><strong>*</strong>Diese Felder sind erforderlich</p>
                                 </div>
                             </div>
                         </div>
