@@ -4,7 +4,6 @@
             <div class="container">
                 <div class="row">
                     <!-- RECIPES -->
-                    <!-- loop over the bears and show off some things -->
                     @foreach ($recipes as $recipe)
                         <div class="col-md-4">
                             <div class="card mb-4 box-shadow">
@@ -24,18 +23,6 @@
                                             <a href="rezepte/{{$recipe->id}}" type="button" class="btn btn-sm btn-outline-secondary">View</a>
                                             <a href="rezepte/{{$recipe->id}}/bearbeiten" type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
                                         </div>
-
-                                        <!--
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">
-                                                <img src="@php //echo asset("storage/dislike.png") @endphp" width="20" alt="dislike" />
-                                            </button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">
-                                                <img src="@php //echo asset("storage/like.png") @endphp" width="20" alt="like" />
-                                            </button>
-                                        </div>
-                                        -->
-
                                         <div class="star-rating__wrap">
                                             <input class="star-rating__input" id="star-rating-5" type="radio" name="rating" value="5">
                                             <label class="star-rating__ico fa fa-star-o fa-lg" for="star-rating-5" title="5 out of 5 stars"></label>

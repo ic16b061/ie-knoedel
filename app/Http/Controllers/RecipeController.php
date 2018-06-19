@@ -103,7 +103,7 @@ class RecipeController extends Controller
      */
     public function show($id)
     {
-        return view('rezept')
+        return view('rezept_view')
             ->with('recipe', Recipe::find($id))
             ->with('ingredients', RecipeIngredient::where('recipe_id', $id)->get());
     }
