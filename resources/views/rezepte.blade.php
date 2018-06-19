@@ -8,8 +8,14 @@
                 @foreach ($recipes as $recipe)
                     <div class="col-lg-4">
                         <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" src="@php echo asset("img/$recipe->image") @endphp"
-                                 alt="{{ $recipe->title }}">
+                           @php
+                                $img = Image::make("img/$recipe->image");
+                                $img->fit(348, 268);
+                                $img->encode('jpg', 85);
+                                $type = 'jpg';
+                                $base64 = 'data:image/' . $type . ';base64,' . base64_encode($img);
+                            @endphp
+                            <img class="card-img-top" src="{!! $base64 !!}" alt="{{ $recipe->title }}">
                             <div class="card-header mh-125">
                                 <h3 class="jumbotron-heading">{{ $recipe->title }}</h3>
                             </div>

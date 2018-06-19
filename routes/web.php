@@ -18,14 +18,9 @@ Route::get('/', function () {
 
 Route::get('/kontakt', 'ContactController@show');
 
-Route::post('/kontakt', [
-    'uses' => 'ContactController@send',
-    'as' => 'contact.store'
-]);
+Route::get('/kontakt', 'ContactController@create');
 
-Route::get('/kontakt', [
-    'uses' => 'ContactController@create'
-]);
+Route::post('/kontakt', 'ContactController@send');
 
 Route::get('/rezepte', 'RecipeController@index');
 
