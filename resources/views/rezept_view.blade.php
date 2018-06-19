@@ -11,7 +11,7 @@
     </section>
     <div class="justify-content-center align-items-center container py-5 bg-light">
         <div class="row">
-            <div class="col-8 col-md-8 col-sm-12">
+            <div class="col-11 col-md-8 col-sm-12">
                 <div class="d-flex justify-content-center align-items-end container" id="image_preview">
                     <img class="img-fluid " id="img_preview" src="/img/{{ $recipe->image }}" alt="Rezeptbild"/>
                 </div>
@@ -22,7 +22,7 @@
                 <p>{{ $recipe->description }}</p>
             </div>
 
-            <div class="col-auto col-md-4 col-sm-12">
+            <div class="col-11 col-md-4 col-sm-12">
                 <h3>Zutaten:</h3>
                 <table class="table table-striped table-bordered">
                     <tbody>
@@ -37,7 +37,7 @@
                 </table>
             </div>
 
-            <div class="col-8 col-md-8 col-sm-12">
+            <div class="col-12 col-md-8 col-sm-12">
                 <div class="row d-flex justify-content-between align-items-end container">
                     <div> Rating: {{ $recipe->rating }}</div>
                     <form class="starform star-rating__wrap">
@@ -73,7 +73,7 @@
                     </form>
                 </div>
             </div>
-            <div class="d-flex justify-content-center col-8 col-md-8 col-sm-12 mt-4">
+            <div class="d-flex justify-content-center col-12 col-md-8 col-sm-12 mt-4">
                 <div class="btn-group">
                     <a href="{{$recipe->id}}/bearbeiten" type="button" class="btn btn-sm btn-outline-secondary">Rezept Bearbeiten</a>
                 </div>
