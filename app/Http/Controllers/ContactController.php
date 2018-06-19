@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Mail;
 
-use App\Http\Requests;
 
 
 class ContactController extends Controller
@@ -39,15 +37,7 @@ class ContactController extends Controller
 
     public function send(Request $request)
     {
-        Mail:send('emails.contact-message', [
-        'msg' => $request->message
-    ], function($mail) use($request){
-        $mail->from($request->email, $request->name);
-
-        $mail->to('knoedel1@gmx.at')->subject('Kontakt von Website');
-    });
-
-        return redirect()->back()->with('flash_message', 'Danke für Ihre Nachricht');
+        //brauchma ned -> script im kontakt.blade.php
 
     }
 

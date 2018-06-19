@@ -12,12 +12,7 @@
                     <br>
                     <h1>Kontakt mit Knödl </h1>
 
-                    @if (Session::has('flash_message'))
-                        <div class="alert alert-success">{{Session::get('flash_message')}}</div>
-                    @endif
                     <form class="needs-validation" id="contact-form" method="post" action="/kontakt" role="form" novalidate>
-                        {{csrf_field()}}
-
                         <div class="messages"></div>
 
                         <div class="controls">
@@ -63,7 +58,17 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <button class="btn btn-primary">Senden</button>
+                                    <script>
+
+                                    function sendmail() {
+                                        var message = document.getElementById("form_message").value;
+                                        var subject = document.getElementById("form_name").value + ' ' + document.getElementById("form_lastname").value;
+
+                                        window.location.href = "mailto:mail@knoedel.org?subject=Kontaktanfrage von: "+subject+"&body="+message;
+                                    }
+
+                                    </script>
+                                    <button type="button" class="btn btn-primary" onclick="sendmail()">Senden</button>
                                 </div>
                             </div>
                             <div class="row mt-3">
