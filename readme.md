@@ -28,7 +28,7 @@ Kontakt-Seite: Hier kann man eine Nachricht an den Web-Site-Besitzer hinterlasse
 
 ## Struktur des Source Codes
 
-#### app -> http -> controllers:  
+### app -> http -> controllers:  
 ContactController => für das Kontaktformular
 RecipeController => für die Rezepte
 **Interessante Funktionen:**  
@@ -58,7 +58,7 @@ Rezept: jedes Rezept, das geseedet werden soll, wird hier einzeln angelegt - ink
 ### public -> img:  
 JPGs für Rezepte & andere Ressourcen
 
-#### resources -> assets -> sass:  
+### resources -> assets -> sass:  
 CSS für Knödel-Seite
   
 ### views -> layout:  
