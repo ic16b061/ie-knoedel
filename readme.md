@@ -22,7 +22,7 @@ Kontakt-Seite: Hier kann man eine Nachricht an den Web-Site-Besitzer hinterlasse
 * Laravel - als PHP Framework inkl. Eloquent    
 * npm  
 * Composer  
-* Apache & nginx  
+* Apache  
 * MySQL    
 * PHP
 
