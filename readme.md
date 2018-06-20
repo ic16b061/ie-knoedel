@@ -38,37 +38,37 @@ edit() - führt zur Bearbeitungsseite des Rezepts
 show() - Zeigt ganzes Rezept auf neuer Seite  
 update() - Rezept wird mit neu editierten Werten versehen
 
-#### app -> http:  
+### app -> http:  
 Ingredient.php => Zutaten Model  
 Recipe.php => Rezept Model  
 RecipeIngredient => RezeptZuZutat Model  
 
-#### database -> factories:
+### database -> factories:
 Zutaten, Rezept Factories  
 Factories erstellen passende Fake-Daten (zum Testing) zu unseren Models (Rezept, Zutat)
 
-#### database -> migrations:  
+### database -> migrations:  
 Definition und Anlage der MySQL-Tables  
 
-#### database -> seeds:
+### database -> seeds:
 Rezept, Zutaten, DB Seeder - befüllt die DB mit vordefinierten Rezepten  
 Zutaten: Jede Zutat, die geseedet werden soll, wird hier mit eindeutigem Namen angegeben  
 Rezept: jedes Rezept, das geseedet werden soll, wird hier einzeln angelegt - inkl. den dazugehörigen Zutaten - diese müssen im Zutaten-Seeder vorhanden sein
 
-#### public -> img:  
+### public -> img:  
 JPGs für Rezepte & andere Ressourcen
 
 #### resources -> assets -> sass:  
 CSS für Knödel-Seite
   
-#### views -> layout:  
+### views -> layout:  
 Grund-Layout für alle Seiten (Unterschiedliche Layouts für unterschiedliche Seiten)  
  
-#### views -> layout -> partials:  
+### views -> layout -> partials:  
 Layout für Header, Footer, Navigationsbar,...  
 **Navbar** = Links zu den anderen Seiten
 
-#### views:  
+### views:  
 **kontakt.blade.php** = Kontaktformular inkl. Check ob in die zwingenden Felder etwas eingegeben wurde  
 
 **rezept.blade.php** = Rezept wird mit all seinen Feldern angezeigt  
@@ -84,8 +84,8 @@ Bewertung des Rezepts wird angegeben
 
 **welcome.blade.php** = Startseite mit 2 Links 
   
-#### routes:  
+### routes:  
 **web.php** = hier werden die Routen gesetzt für get/post Aufrufe. 
 
-#### .env Datei == Konfigurationsdatei
+### .env Datei == Konfigurationsdatei
   
