@@ -6,6 +6,7 @@
                 <!-- RECIPES -->
                 @foreach ($recipes as $recipe)
                     <div class="col-md-4">
+                        <a href="/rezepte/{{$recipe->id}}" class="recipe-link">
                         <div class="card mb-4 box-shadow">
                                 @php
                                     $img = Image::make("img/$recipe->image");
@@ -62,9 +63,30 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
         </div>
     </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script type='text/javascript'>
+        $(document).ready(function() {
+            $('.star-rating__input').change(function (e) {
+                e.preventDefault()  // prevent the form from 'submitting'
+
+                let url = '/rezepte/rate'; // get the target
+                let input = $(e.target);
+                let result = input.parents('form').serialize();
+
+                $.post(url, result, function (response) { // send; response.data will be what is returned
+                    alert(response)
+                });
+            });
+        });
+    </script>
 @endsection
