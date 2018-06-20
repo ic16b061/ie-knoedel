@@ -39,8 +39,8 @@
 
             <div class="col-12 col-md-12 col-sm-12 col-lg-12">
                 <div class="row d-flex justify-content-between container">
-                    <div> Rating: {{ $recipe->rating }}</div>
-                    <form class="starform star-rating__wrap">
+                    <div>Bewertung: {{ $recipe->rating }}</div>
+                    <form class="starform star-rating__wrap pl-4 ml-3">
                         {{ csrf_field() }}
                         <input type="hidden" name="id" value="{{ $recipe->id }}" ;>
                         <div class="form-group pt-1">
@@ -71,11 +71,12 @@
                                    title="1 von 5 Sternen"></label>
                         </div>
                     </form>
+                    <div>{{ $recipe->rating_count }} Bewertungen</div>
                 </div>
             </div>
             <div class="d-flex justify-content-center col-12 col-md-12 col-sm-12 col-lg-12 mt-4">
                 <div class="btn-group">
-                    <a href="{{$recipe->id}}/bearbeiten" type="button" class="btn btn-sm btn-outline-secondary">Rezept Bearbeiten</a>
+                    <a href="{{$recipe->id}}/bearbeiten" type="button" class="btn btn-sm btn-outline-secondary">Rezept bearbeiten</a>
                 </div>
             </div>
 

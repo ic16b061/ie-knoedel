@@ -6,7 +6,9 @@
 
 @extends('layout.formlayout')
 @section('content')
+
     <section class="jumbotron text-center">
+
         <div class="container">
             <h1 class="jumbotron-heading">Rezept hinzufügen</h1>
             <p class="lead text-muted">Erweitern Sie unsere Knödel-Rezepte um ein neues leckeres Gericht!</p>

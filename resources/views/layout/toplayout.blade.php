@@ -5,6 +5,7 @@
 </head>
 <body>
     @include('layout.partials.nav')
+    @include('layout.partials.banner')
     @include('layout.partials.topheader')
     @yield('content')
     @include('layout.partials.footer')

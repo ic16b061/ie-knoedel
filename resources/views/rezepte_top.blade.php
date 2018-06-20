@@ -7,7 +7,14 @@
                 @foreach ($recipes as $recipe)
                     <div class="col-md-4">
                         <div class="card mb-4 box-shadow">
-                            <img class="card-img-top" src="@php echo asset("img/$recipe->image") @endphp" alt="{{ $recipe->title }}">
+                                @php
+                                    $img = Image::make("img/$recipe->image");
+                                    $img->fit(348, 268);
+                                    $img->encode('jpg', 85);
+                                    $type = 'jpg';
+                                    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($img);
+                                @endphp
+                                <img class="card-img-top" src="{!! $base64 !!}" alt="{{ $recipe->title }}">
                             <div class="card-header mh-125" >
                                 <h3 class="jumbotron-heading">{{$recipe->title}}</h3>
                             </div>
@@ -19,11 +26,39 @@
                                     ...
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="/rezepte/{{$recipe->id}}" type="button" class="btn btn-sm btn-outline-secondary">View</a>
-                                        <a href="/rezepte/{{$recipe->id}}/bearbeiten" type="button" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                    </div>
-                                    <span> Rating: {{ $recipe->rating }}</span>
+                                    <div>Bewertung: {{ $recipe->rating }}</div>
+
+                                    <form class="starform star-rating__wrap">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="id" value="{{ $recipe->id }}";>
+                                        <div class="form-group pt-1">
+                                            <input class="star-rating__input" id="star-rating-5-{{ $recipe->id }}"
+                                                   type="radio" name="rating" value="5">
+                                            <label class="star-rating__ico fa fa-star-o fa-lg"
+                                                   for="star-rating-5-{{ $recipe->id }}"
+                                                   title="5 von 5 Sternen"></label>
+                                            <input class="star-rating__input" id="star-rating-4-{{ $recipe->id }}"
+                                                   type="radio" name="rating" value="4">
+                                            <label class="star-rating__ico fa fa-star-o fa-lg"
+                                                   for="star-rating-4-{{ $recipe->id }}"
+                                                   title="4 von 5 Sternen"></label>
+                                            <input class="star-rating__input" id="star-rating-3-{{ $recipe->id }}"
+                                                   type="radio" name="rating" value="3">
+                                            <label class="star-rating__ico fa fa-star-o fa-lg"
+                                                   for="star-rating-3-{{ $recipe->id }}"
+                                                   title="3 von 5 Sternen"></label>
+                                            <input class="star-rating__input" id="star-rating-2-{{ $recipe->id }}"
+                                                   type="radio" name="rating" value="2">
+                                            <label class="star-rating__ico fa fa-star-o fa-lg"
+                                                   for="star-rating-2-{{ $recipe->id }}"
+                                                   title="2 von 5 Sternen"></label>
+                                            <input class="star-rating__input" id="star-rating-1-{{ $recipe->id }}"
+                                                   type="radio" name="rating" value="1">
+                                            <label class="star-rating__ico fa fa-star-o fa-lg"
+                                                   for="star-rating-1-{{ $recipe->id }}"
+                                                   title="1 von 5 Sternen"></label>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

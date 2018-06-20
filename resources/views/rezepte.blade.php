@@ -7,6 +7,7 @@
                 <!-- loop over the bears and show off some things -->
                 @foreach ($recipes as $recipe)
                     <div class="col-lg-4">
+                        <a href="/rezepte/{{$recipe->id}}" class="recipe-link">
                         <div class="card mb-4 box-shadow">
                            @php
                                 $img = Image::make("img/$recipe->image");
@@ -27,12 +28,7 @@
                                     ...
                                 </p>
                                 <div class="d-flex justify-content-between align-content-sm-start">
-                                    <div class="btn-group">
-                                        <a href="rezepte/{{$recipe->id}}" type="button"
-                                           class="btn btn-sm btn-outline-secondary">View</a>
-                                        <a href="rezepte/{{$recipe->id}}/bearbeiten" type="button"
-                                           class="btn btn-sm btn-outline-secondary">Edit</a>
-                                    </div>
+                                    <div>Bewertung: {{ $recipe->rating }}</div>
 
                                     <form class="starform star-rating__wrap">
                                         {{ csrf_field() }}
@@ -68,6 +64,7 @@
                                 </div>
                             </div>
                         </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
