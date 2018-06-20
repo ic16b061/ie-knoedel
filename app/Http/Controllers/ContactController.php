@@ -46,7 +46,7 @@ class ContactController extends Controller
             $mail->Host = "smtp.world4you.com";
             $mail->Port = 587; // most likely something different for you. This is the mailtrap.io port i use for testing.
             $mail->Username = "ie@gabriel-hq.at";
-            $mail->Password = "knoedel4321";
+            $mail->Password = 'xxxxxx';
             $mail->setFrom("ie@gabriel-hq.at",  $name.' '.$surname);
             $mail->Subject = "Neue Nachricht von Knödel";
             $mail->Body = "Telefonnummer: ".$phone."\r\nNachricht:\r\n".$msg;
