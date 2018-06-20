@@ -37,8 +37,8 @@
                 </table>
             </div>
 
-            <div class="col-12 col-md-8 col-sm-12">
-                <div class="row d-flex justify-content-between align-items-end container">
+            <div class="col-12 col-md-12 col-sm-12 col-lg-12">
+                <div class="row d-flex justify-content-between container">
                     <div> Rating: {{ $recipe->rating }}</div>
                     <form class="starform star-rating__wrap">
                         {{ csrf_field() }}
@@ -73,7 +73,7 @@
                     </form>
                 </div>
             </div>
-            <div class="d-flex justify-content-center col-12 col-md-8 col-sm-12 mt-4">
+            <div class="d-flex justify-content-center col-12 col-md-12 col-sm-12 col-lg-12 mt-4">
                 <div class="btn-group">
                     <a href="{{$recipe->id}}/bearbeiten" type="button" class="btn btn-sm btn-outline-secondary">Rezept Bearbeiten</a>
                 </div>
